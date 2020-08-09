@@ -35,18 +35,18 @@ elemShortAnswer(name,YourQue,length){
     this.CompElements.push(newShortAnswer);
 }
 
-elemMultChoice(name,YourQue,choices){
+elemMultChoice(type,name,YourQue,choices){
 	this.ArgValidation(name,YourQue);
-	const newMultChoice = new MultChoice( name,YourQue,choices);
+	const newMultChoice = new MultChoice(type,name,YourQue,choices);
 	newMultChoice.YourQue = this.CompElements.length+1 + '.'+ newMultChoice.YourQue;
     this.CompElements.push(newMultChoice);
 }
 
 elemDropDown(name,YourQue,choices){
 	this.ArgValidation(name,YourQue);
-	const newMultChoice = new MultChoice( name,YourQue,choices);
-	newMultChoice.YourQue = this.CompElements.length+1 + '.'+ newMultChoice.YourQue;
-    this.CompElements.push(newMultChoice);
+	const newDropDown = new DropDown( name,YourQue,choices);
+	newDropDown.YourQue = this.CompElements.length+1 + '.'+ newDropDown.YourQue;
+    this.CompElements.push(newDropDown);
 }
 
 elemRadioChoice(name,YourQue,choices){
@@ -117,8 +117,8 @@ class TextInput{
 }
 
 class MultChoice{
-	constructor( name,YourQue,choices) {
-		
+	constructor( type,name,YourQue,choices) {
+		this.type = type;
 		this.name = name;
 		this.YourQue = YourQue;
 		this.choices = choices;
@@ -138,13 +138,15 @@ class MultChoice{
 		  ElemDiv.appendChild(Mainlabel);
 
 		var VarMultChoice = 'newMultChoice';
-
+		
 
 		  for(var i = 0;i< this.choices.length;i++){
 		this[VarMultChoice + 'op' + i] = document.createElement('input');
-		this[VarMultChoice + 'op' + i].type = 'checkbox';
+		
+		
+		this.type === 'radio' ? this[VarMultChoice + 'op' + i].type = 'radio': this[VarMultChoice + 'op' + i].type = 'checkbox';
 		this[VarMultChoice + 'op' + i].className = 'compElem compElem-basic-checkbox';
-		this[VarMultChoice + 'op' + i].name = 'this.name-choice' + i;
+		this.type === 'radio' ? this[VarMultChoice + 'op' + i].name = 'this.name-choice':this[VarMultChoice + 'op' + i].name = 'this.name-choice' + i;
 		//Add checkbox to div
 		ElemDiv.appendChild(this[VarMultChoice + 'op' + i]);
 
@@ -165,6 +167,54 @@ class MultChoice{
 
 
 class RadioChoice{
+	constructor( name,YourQue,choices) {
+		
+		this.name = name;
+		this.YourQue = YourQue;
+		this.choices = choices;
+	  }
+	
+	  returnElem() {
+		  
+		//create Div to contain question(label) and Radio_choice
+		const ElemDiv = document.createElement('div');
+		ElemDiv.className = 'compElem compElem-basic-short-div';
+	  
+		//Question(label)
+		let  Mainlabel = document.createElement('label');
+		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.textContent = this.YourQue;
+		
+		  ElemDiv.appendChild(Mainlabel);
+
+		var VarRadioChoice = 'newRadioChoice';
+
+
+		  for(var i = 0;i< this.choices.length;i++){
+		this[VarRadioChoice + 'op' + i] = document.createElement('input');
+		this[VarRadioChoice + 'op' + i].type = 'radio';
+		this[VarRadioChoice + 'op' + i].className = 'compElem compElem-basic-radio';
+		this[VarRadioChoice + 'op' + i].name = 'this.name-choice';
+		//Add radio to div
+		ElemDiv.appendChild(this[VarRadioChoice + 'op' + i]);
+
+		//Individual labels for radioes
+		let  Sublabel = document.createElement('label');
+		Sublabel.className = 'compElem compElem-basic-choice-label';
+		Sublabel.textContent = this.choices[i];
+			//Add radio to div
+		ElemDiv.appendChild(Sublabel);
+		  }
+
+
+		return ElemDiv;
+	  }
+
+//Class MultChoice ends	  
+}
+
+
+class DropDown{
 	constructor( name,YourQue,choices) {
 		
 		this.name = name;
