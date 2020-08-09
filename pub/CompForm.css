@@ -15,12 +15,18 @@
 
 /* compElem-type(basic,complex)-len(short,long)-basictype(text,checkbox,dropdown)) */
 .compElem-input-area-email, 
-.compElem-input-area-password, 
+.compElem-input-area-password,
+
 .compElem-basic-short-text {
   width: auto;
   height: 40px;
   border-width: 1px;
   border-radius: 10px;
+}
+
+.compElem-basic-choice-label{
+  margin: 5px;
+  /* display: block; */
 }
 
 .compElem-input-area-email, 
@@ -30,3 +36,4 @@
   border-width: 2px;
   border-radius: 5px;
 }
+

@@ -8,10 +8,12 @@ function initCompForm(name) {
 
 //Main CompForm Class
 class CompForm {
-	constructor(compformname) {
+	// constructor(compformname, question_num_option) {
+		constructor(compformname) {
 	  this.compformname = compformname;
 	  this.CompElements = [];
 	  this.id = '';
+	//   this.question_num_option = question_num_option;
 	}
 
 	ArgValidation(name,YourQue,length){
@@ -20,14 +22,25 @@ class CompForm {
 			console.log('missing arguments in'+ this.compformname);
 		}
 	}
-	
+	//TODO add various question number options such as numerical, alphabetical, NIL
+	// numberSys(){
+	// 	if(this.question_num_option === 'roman')
+
+	// }
+
 elemShortAnswer(name,YourQue,length){
 	this.ArgValidation(name,YourQue,length);
 	const newShortAnswer = new TextInput( name,YourQue,length);
+	newShortAnswer.YourQue = this.CompElements.length+1 + '.'+ newShortAnswer.YourQue;
     this.CompElements.push(newShortAnswer);
 }
 
-// elemMultChoice()
+elemMultChoice(name,YourQue,choices){
+	this.ArgValidation(name,YourQue);
+	const newMultChoice = new MultChoice( name,YourQue,choices);
+	newMultChoice.YourQue = this.CompElements.length+1 + '.'+ newMultChoice.YourQue;
+    this.CompElements.push(newMultChoice);
+}
 
 createCompForm(id) {
     const form = this.returnCompForm();
@@ -90,31 +103,46 @@ class TextInput{
 }
 
 class MultChoice{
-	constructor( name,YourQue) {
+	constructor( name,YourQue,choices) {
 		
 		this.name = name;
 		this.YourQue = YourQue;
+		this.choices = choices;
 	  }
 	
 	  returnElem() {
-		const newMultChoice = document.createElement('input');
-		
-		newMultChoice.type = this.type;
-		newMultChoice.name = this.name;
-	  
-		newTextInput.className = 'compElem compElem-basic-short-'+this.type
-	  
-		//create label
-		let  labelInputArea = document.createElement('label');
-		  labelInputArea.className = 'compElem compElem-basic-short-label';
-		  labelInputArea.textContent = this.YourQue;
-		
-		//create Div to contain label and text input
+		  
+		//create Div to contain question(label) and Multiple_choice
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-short-div';
 	  
-		ElemDiv.appendChild(labelInputArea)
-		ElemDiv.appendChild(newTextInput)
+		//Question(label)
+		let  Mainlabel = document.createElement('label');
+		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.textContent = this.YourQue;
+		
+		  ElemDiv.appendChild(Mainlabel);
+
+		var VarMultChoice = 'newMultChoice';
+
+
+		  for(var i = 0;i< this.choices.length;i++){
+		this[VarMultChoice + 'op' + i] = document.createElement('input');
+		this[VarMultChoice + 'op' + i].type = 'checkbox';
+		this[VarMultChoice + 'op' + i].className = 'compElem compElem-basic-checkbox';
+		this[VarMultChoice + 'op' + i].name = 'this.name-choice' + i;
+		//Add checkbox to div
+		ElemDiv.appendChild(this[VarMultChoice + 'op' + i]);
+
+		//Individual labels for checkboxes
+		let  Sublabel = document.createElement('label');
+		Sublabel.className = 'compElem compElem-basic-choice-label';
+		Sublabel.textContent = this.choices[i];
+			//Add checkbox to div
+		ElemDiv.appendChild(Sublabel);
+		  }
+
+
 		return ElemDiv;
 	  }
 
