@@ -1,16 +1,16 @@
 'use strict';
 
-//Creates CompForm
-function initCompForm(name) {
-	const newCompForm = new CompForm(name);
-	return newCompForm;
+//Creates CompPage
+function initCompPage(name) {
+	const newCompPage = new CompPage(name);
+	return newCompPage;
   }
 
-//Main CompForm Class
-class CompForm {
-	// constructor(compformname, question_num_option) {
-		constructor(compformname) {
-	  this.compformname = compformname;
+//Main CompPage Class
+class CompPage {
+	// constructor(comppagename, question_num_option) {
+		constructor(comppagename) {
+	  this.comppagename = comppagename;
 	  this.CompElements = [];
 	  this.id = '';
 	//   this.question_num_option = question_num_option;
@@ -19,7 +19,7 @@ class CompForm {
 	ArgValidation(name,YourQue,length){
 		if( name === '' || YourQue ==='' || length <= 0)
 		{
-			console.log('missing arguments in'+ this.compformname);
+			console.log('missing arguments in'+ this.comppagename);
 		}
 	}
 	//TODO add various question number options such as numerical, alphabetical, NIL
@@ -56,29 +56,29 @@ elemRadioChoice(name,YourQue,choices){
     this.CompElements.push(newRadioChoice);
 }
 
-createCompForm(id) {
-    const form = this.returnCompForm();
+createCompPage(id) {
+    const MainCompPage = this.returnCompPage();
     this.id = id;
-    const completeForm = this.CompElements.reduce(function (thisForm, formItem) {
+    const completePage = this.CompElements.reduce(function (thisPage, formItem) {
       if (formItem.constructor.name === 'SubmitButton') {
-        thisForm.appendChild(formItem.returnElem(thisForm));
+        thisPage.appendChild(formItem.returnElem(thisPage));
       } else {
-        thisForm.appendChild(formItem.returnElem());
+        thisPage.appendChild(formItem.returnElem());
       }
-      return thisForm;
-    }, form);
+      return thisPage;
+    }, MainCompPage);
 
-    document.querySelector('#'+id).appendChild(completeForm);
+    document.querySelector('#'+id).appendChild(completePage);
   }
 
   
-returnCompForm() {
-    const form = document.createElement('form');
-    form.className = 'compElem compElem-div';
-    return form;
+returnCompPage() {
+    const MainCompPage = document.createElement('div');
+    MainCompPage.className = 'compElem compElem-div';
+    return MainCompPage;
   }
 
-  //Class CompForm Ends
+  //Class CompPage Ends
 }
 
 
