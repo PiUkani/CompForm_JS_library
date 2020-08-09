@@ -56,6 +56,13 @@ elemRadioChoice(name,YourQue,choices){
     this.CompElements.push(newRadioChoice);
 }
 
+elemMixedInput( name,YourQue,InputTypes){
+	this.ArgValidation(name,YourQue);
+	const newMixedInput = new MixedInput( name,YourQue,InputTypes);
+	newMixedInput.YourQue = this.CompElements.length+1 + '.'+ newMixedInput.YourQue;
+    this.CompElements.push(newMixedInput);
+}
+
 createCompPage(id) {
     const MainCompPage = this.returnCompPage();
     this.id = id;
@@ -210,7 +217,7 @@ class RadioChoice{
 		return ElemDiv;
 	  }
 
-//Class MultChoice ends	  
+//Class RadioChoice ends	  
 }
 
 
@@ -235,31 +242,68 @@ class DropDown{
 		
 		  ElemDiv.appendChild(Mainlabel);
 
-		var VarRadioChoice = 'newRadioChoice';
-
+		let newDropDown = document.createElement('select');
+		// newDropDown.type = 'radio';
+		newDropDown.className = 'compElem compElem-basic-radio';
+		newDropDown.name = 'this.name-choice';
+		//Add radio to div
+		ElemDiv.appendChild(newDropDown);
 
 		  for(var i = 0;i< this.choices.length;i++){
-		this[VarRadioChoice + 'op' + i] = document.createElement('input');
-		this[VarRadioChoice + 'op' + i].type = 'radio';
-		this[VarRadioChoice + 'op' + i].className = 'compElem compElem-basic-radio';
-		this[VarRadioChoice + 'op' + i].name = 'this.name-choice';
-		//Add radio to div
-		ElemDiv.appendChild(this[VarRadioChoice + 'op' + i]);
-
 		//Individual labels for radioes
-		let  Sublabel = document.createElement('label');
+		let  Sublabel = document.createElement('option');
 		Sublabel.className = 'compElem compElem-basic-choice-label';
 		Sublabel.textContent = this.choices[i];
 			//Add radio to div
-		ElemDiv.appendChild(Sublabel);
+			newDropDown.appendChild(Sublabel);
 		  }
-
 
 		return ElemDiv;
 	  }
 
-//Class MultChoice ends	  
+//Class DropDown ends	  
 }
 
 
 //More Complex Inputs
+class MixedInput{
+	constructor( name,YourQue,InputTypes) {
+		
+		this.name = name;
+		this.YourQue = YourQue;
+		this.InputTypes = InputTypes;
+	  }
+	
+	  returnElem() {
+		  
+		//create Div to contain question(label) and Radio_choice
+		const ElemDiv = document.createElement('div');
+		ElemDiv.className = 'compElem compElem-basic-short-div';
+	  
+		//Question(label)
+		let  Mainlabel = document.createElement('label');
+		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.textContent = this.YourQue;
+		
+		  ElemDiv.appendChild(Mainlabel);
+
+		let newDropDown = document.createElement('select');
+		// newDropDown.type = 'radio';
+		newDropDown.className = 'compElem compElem-basic-radio';
+		newDropDown.name = 'this.name-choice';
+		//Add radio to div
+		ElemDiv.appendChild(newDropDown);
+
+		  for(var i = 0;i< this.choices.length;i++){
+		//Individual labels for radioes
+		let  Sublabel = document.createElement('option');
+		Sublabel.className = 'compElem compElem-basic-choice-label';
+		Sublabel.textContent = this.choices[i];
+			//Add radio to div
+			newDropDown.appendChild(Sublabel);
+		  }
+
+		return ElemDiv;
+	  }
+
+}
