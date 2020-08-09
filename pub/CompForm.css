@@ -16,7 +16,6 @@
 /* compElem-type(basic,complex)-len(short,long)-basictype(text,checkbox,dropdown)) */
 .compElem-input-area-email, 
 .compElem-input-area-password,
-
 .compElem-basic-short-text {
   width: auto;
   height: 40px;

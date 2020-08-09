@@ -42,6 +42,20 @@ elemMultChoice(name,YourQue,choices){
     this.CompElements.push(newMultChoice);
 }
 
+elemDropDown(name,YourQue,choices){
+	this.ArgValidation(name,YourQue);
+	const newMultChoice = new MultChoice( name,YourQue,choices);
+	newMultChoice.YourQue = this.CompElements.length+1 + '.'+ newMultChoice.YourQue;
+    this.CompElements.push(newMultChoice);
+}
+
+elemRadioChoice(name,YourQue,choices){
+	this.ArgValidation(name,YourQue);
+	const newRadioChoice = new RadioChoice( name,YourQue,choices);
+	newRadioChoice.YourQue = this.CompElements.length+1 + '.'+ newRadioChoice.YourQue;
+    this.CompElements.push(newRadioChoice);
+}
+
 createCompForm(id) {
     const form = this.returnCompForm();
     this.id = id;
@@ -148,5 +162,54 @@ class MultChoice{
 
 //Class MultChoice ends	  
 }
+
+
+class RadioChoice{
+	constructor( name,YourQue,choices) {
+		
+		this.name = name;
+		this.YourQue = YourQue;
+		this.choices = choices;
+	  }
+	
+	  returnElem() {
+		  
+		//create Div to contain question(label) and Radio_choice
+		const ElemDiv = document.createElement('div');
+		ElemDiv.className = 'compElem compElem-basic-short-div';
+	  
+		//Question(label)
+		let  Mainlabel = document.createElement('label');
+		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.textContent = this.YourQue;
+		
+		  ElemDiv.appendChild(Mainlabel);
+
+		var VarRadioChoice = 'newRadioChoice';
+
+
+		  for(var i = 0;i< this.choices.length;i++){
+		this[VarRadioChoice + 'op' + i] = document.createElement('input');
+		this[VarRadioChoice + 'op' + i].type = 'radio';
+		this[VarRadioChoice + 'op' + i].className = 'compElem compElem-basic-radio';
+		this[VarRadioChoice + 'op' + i].name = 'this.name-choice';
+		//Add radio to div
+		ElemDiv.appendChild(this[VarRadioChoice + 'op' + i]);
+
+		//Individual labels for radioes
+		let  Sublabel = document.createElement('label');
+		Sublabel.className = 'compElem compElem-basic-choice-label';
+		Sublabel.textContent = this.choices[i];
+			//Add radio to div
+		ElemDiv.appendChild(Sublabel);
+		  }
+
+
+		return ElemDiv;
+	  }
+
+//Class MultChoice ends	  
+}
+
 
 //More Complex Inputs
