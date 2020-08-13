@@ -1,9 +1,9 @@
 const newQuiz = initCompPage('Demo_1');
-newQuiz.elemShortAnswer('short_1', 'Does this spark joy?', 50);
+newQuiz.elemShortAnswer({ name: 'short_1', YourQue: 'Does this spark joy?', length: 50 });
 
-newQuiz.elemMultChoice('', 'mul_choice_1', 'Choose reasons for the sparks of joy', ['1', '2', '3', '4']);
+newQuiz.elemMultChoice('mul_choice_1', 'Choose reasons for the sparks of joy', ['1', '2', '3', '4']);
 
-newQuiz.elemMultChoice('radio', 'rad_choice_1', 'Choose one reason for the sparks of joy', ['1', '2', '3', '4']);
+newQuiz.elemMultChoice('rad_choice_1', 'Choose one reason for the sparks of joy', ['1', '2', '3', '4'], 'radio');
 
 newQuiz.elemDropDown('rad_choice_1', 'Which one sparks the joy', ['1', '2', '3', '4']);
 
@@ -14,17 +14,17 @@ var MixedInputJSON = {
     YourQue: "Fill out Below class Eval",
     VariousInputs: [
         {
-            type: 'text',
+            type: TextInput,
             name: 'short_2',
             YourQue: 'describe your experience',
             length: 100,
         },
-        //    {
-        //         type: 'checkbox',
-        //         name: 'check_2',
-        //         YourQue: 'select whichever applies',
-        //         choices: ['1','2','3','4'],
-        //     },
+        {
+            type: MultChoice,
+            name: 'check_2',
+            YourQue: 'select whichever applies',
+            choices: ['1', '2', '3', '4'],
+        },
         //   {
         //         type: 'radio',
         //         name: 'radio_2',

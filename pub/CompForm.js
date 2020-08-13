@@ -66,11 +66,11 @@ class CompPage {
 		const MainCompPage = this.returnCompPage();
 		this.id = id;
 		const completePage = this.CompElements.reduce(function (thisPage, formItem) {
-			if (formItem.constructor.name === 'SubmitButton') {
-				thisPage.appendChild(formItem.returnElem(thisPage));
-			} else {
-				thisPage.appendChild(formItem.returnElem());
-			}
+			// if (formItem.constructor.name === 'SubmitButton') {
+			// 	thisPage.appendChild(formItem.returnElem(thisPage));
+			// } else {
+			thisPage.appendChild(formItem.returnElem());
+			// }
 			return thisPage;
 		}, MainCompPage);
 
@@ -88,15 +88,18 @@ class CompPage {
 }
 
 
+
+
 //TODO add line feature lines can define if long answer or short answer
 //Basic Inputs
-class TextInput {
-	constructor(name, YourQue, length) {
-		this.length = length;
-		this.name = name;
-		this.YourQue = YourQue;
-	}
 
+class TextInput {
+	constructor(InputJSON) {
+		this.length = InputJSON.length;
+		this.name = InputJSON.name;
+		this.YourQue = InputJSON.YourQue;
+	}
+	static name = 'TextInput'
 	returnElem() {
 		const newTextInput = document.createElement('input');
 
@@ -122,8 +125,9 @@ class TextInput {
 	//Class TextInput ends	  
 }
 
+
 class MultChoice {
-	constructor(type, name, YourQue, choices) {
+	constructor(name, YourQue, choices, type) {
 		this.type = type;
 		this.name = name;
 		this.YourQue = YourQue;
@@ -268,6 +272,7 @@ class DropDown {
 class MixedInput {
 	constructor(InputJSON) {
 		this.Input = (InputJSON);
+
 	}
 
 	returnElem() {
@@ -291,16 +296,21 @@ class MixedInput {
 
 
 		for (let Inputtypes of this.Input.VariousInputs) {
-			// console.log(this.Input.VariousInputs);
-			// Inputtypes.type === 'text' ? this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtype.length) : new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtype.length)
-			this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtypes.length)
-			ElemDiv.appendChild(this[ParseInputTypes + Inputtypes.type]);
+			Inputtypes.type === TextInput ? this[ParseInputTypes + Inputtypes.type] = new Inputtypes.type(Inputtypes) : console.log('other')
 
+			Inputtypes.type === MultChoice ? this[ParseInputTypes + Inputtypes.type] = new Inputtypes.type(Inputtypes.name, Inputtypes.YourQue, Inputtypes.choices) : console.log('other')
+
+			// this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtypes.length)
+			ElemDiv.appendChild(this[ParseInputTypes + Inputtypes.type].returnElem());
 
 		}
 
 
 		return ElemDiv;
 	}
+
+
+
+
 
 }
