@@ -128,14 +128,13 @@ class TextInput {
 
 class MultChoice {
 	constructor(InputJSON) {
-		this.type = InputJSON.type;
+		this.subtype = InputJSON.subtype;
 		this.name = InputJSON.name;
 		this.YourQue = InputJSON.YourQue;
 		this.choices = InputJSON.choices;
 	}
 
 	returnElem() {
-		console.log(this.choices)
 		//create Div to contain question(label) and Multiple_choice
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-short-div';
@@ -154,9 +153,9 @@ class MultChoice {
 			this[VarMultChoice + 'op' + i] = document.createElement('input');
 
 
-			(this.type === 'radio') ? this[VarMultChoice + 'op' + i].type = 'radio' : this[VarMultChoice + 'op' + i].type = 'checkbox';
+			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].type = 'radio' : this[VarMultChoice + 'op' + i].type = 'checkbox';
 			this[VarMultChoice + 'op' + i].className = 'compElem compElem-basic-checkbox';
-			(this.type === 'radio') ? this[VarMultChoice + 'op' + i].name = 'this.name-choice' : this[VarMultChoice + 'op' + i].name = 'this.name-choice' + i;
+			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].name = 'this.name-choice' : this[VarMultChoice + 'op' + i].name = 'this.name-choice' + i;
 			//Add checkbox to div
 			ElemDiv.appendChild(this[VarMultChoice + 'op' + i]);
 

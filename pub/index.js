@@ -25,12 +25,13 @@ var MixedInputJSON = {
             YourQue: 'select whichever applies',
             choices: ['5', '2', '3', '4'],
         },
-        //   {
-        //         type: 'radio',
-        //         name: 'radio_2',
-        //         YourQue: 'select one of the following',
-        //         choices: ['1','2','3','4'],
-        //     }
+        {
+            subtype: 'radio',
+            type: MultChoice,
+            name: 'radio_2',
+            YourQue: 'select one of the following',
+            choices: ['1', '2', '3', '4'],
+        }
     ],
 };
 
