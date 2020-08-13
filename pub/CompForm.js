@@ -55,10 +55,10 @@ class CompPage {
 		this.CompElements.push(newRadioChoice);
 	}
 
-	elemMixedInput(name, YourQue, InputTypes) {
-		this.ArgValidation(name, YourQue);
-		const newMixedInput = new MixedInput(name, YourQue, InputTypes);
-		newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
+	elemMixedInput(InputJSON) {
+		// this.ArgValidation(name, YourQue);
+		const newMixedInput = new MixedInput(InputJSON);
+		// newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
 		this.CompElements.push(newMixedInput);
 	}
 
@@ -267,7 +267,7 @@ class DropDown {
 //More Complex Inputs
 class MixedInput {
 	constructor(InputJSON) {
-		this.Input = JSON.parse(InputJSON);
+		this.Input = (InputJSON);
 	}
 
 	returnElem() {
@@ -287,18 +287,18 @@ class MixedInput {
 
 
 
-		var ParseInputTypes = '';
+		var ParseInputTypes = 'MixedInput-';
 
 
-		for (Inputtypes in Input.VariosInputs) {
+		for (let Inputtypes of this.Input.VariousInputs) {
+			// console.log(this.Input.VariousInputs);
+			// Inputtypes.type === 'text' ? this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtype.length) : new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtype.length)
+			this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtypes.length)
+			ElemDiv.appendChild(this[ParseInputTypes + Inputtypes.type]);
 
-			Inputtypes.type === 'text' ?
-				let Sublabel = document.createElement('option');
-			Sublabel.className = 'compElem compElem-basic-choice-label';
-			Sublabel.textContent = this.choices[i];
-			//Add radio to div
-			newDropDown.appendChild(Sublabel);
+
 		}
+
 
 		return ElemDiv;
 	}
