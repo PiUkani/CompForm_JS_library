@@ -127,15 +127,15 @@ class TextInput {
 
 
 class MultChoice {
-	constructor(name, YourQue, choices, type) {
-		this.type = type;
-		this.name = name;
-		this.YourQue = YourQue;
-		this.choices = choices;
+	constructor(InputJSON) {
+		this.type = InputJSON.type;
+		this.name = InputJSON.name;
+		this.YourQue = InputJSON.YourQue;
+		this.choices = InputJSON.choices;
 	}
 
 	returnElem() {
-
+		console.log(this.choices)
 		//create Div to contain question(label) and Multiple_choice
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-short-div';
@@ -177,11 +177,11 @@ class MultChoice {
 
 
 class RadioChoice {
-	constructor(name, YourQue, choices) {
+	constructor(InputJSON) {
 
-		this.name = name;
-		this.YourQue = YourQue;
-		this.choices = choices;
+		this.name = InputJSON.name;
+		this.YourQue = InputJSON.YourQue;
+		this.choices = InputJSON.choices;
 	}
 
 	returnElem() {
@@ -225,11 +225,11 @@ class RadioChoice {
 
 
 class DropDown {
-	constructor(name, YourQue, choices) {
+	constructor(InputJSON) {
 
-		this.name = name;
-		this.YourQue = YourQue;
-		this.choices = choices;
+		this.name = InputJSON.name;
+		this.YourQue = InputJSON.YourQue;
+		this.choices = InputJSON.choices;
 	}
 
 	returnElem() {
@@ -296,9 +296,7 @@ class MixedInput {
 
 
 		for (let Inputtypes of this.Input.VariousInputs) {
-			Inputtypes.type === TextInput ? this[ParseInputTypes + Inputtypes.type] = new Inputtypes.type(Inputtypes) : console.log('other')
-
-			Inputtypes.type === MultChoice ? this[ParseInputTypes + Inputtypes.type] = new Inputtypes.type(Inputtypes.name, Inputtypes.YourQue, Inputtypes.choices) : console.log('other')
+			this[ParseInputTypes + Inputtypes.type] = new Inputtypes.type(Inputtypes)
 
 			// this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtypes.length)
 			ElemDiv.appendChild(this[ParseInputTypes + Inputtypes.type].returnElem());
