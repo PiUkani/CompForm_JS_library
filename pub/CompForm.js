@@ -90,7 +90,7 @@ class CompPage {
 		// console.log(this.CompElements)
 		for (var i = 0; i < this.CompElements.length; i++) {
 			// console.log(this.CompElements[i].constructor)
-			if (this.CompElements[i].constructor === TextInput || this.CompElements[i].constructor === MultChoice || this.CompElements[i].constructor === DropDown) { this.CompElements[i].getdata() }
+			if (this.CompElements[i].constructor === TextInput || this.CompElements[i].constructor === MultChoice || this.CompElements[i].constructor === DropDown || this.CompElements[i].constructor === MixedInput) { this.CompElements[i].getdata() }
 
 			else { console.log('nomore'); }
 		}
@@ -334,7 +334,7 @@ class DropDown {
 class MixedInput {
 	constructor(InputJSON) {
 		this.Input = (InputJSON);
-
+		this.MixedElements = [];
 	}
 
 	returnElem() {
@@ -361,11 +361,29 @@ class MixedInput {
 			this[ParseInputTypes + Inputtypes.type] = new Inputtypes.type(Inputtypes)
 
 			// this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtypes.length)
+			this.MixedElements.push(this[ParseInputTypes + Inputtypes.type]);
 			ElemDiv.appendChild(this[ParseInputTypes + Inputtypes.type].returnElem());
 			// ElemDiv.childNodes.reduce()
 		}
 
 		return ElemDiv;
+	}
+	getdata() {
+		// console.log(this.CompElements)
+
+		var VariousInputs = [];
+		var Mixeddata = { 'VariousInputs': VariousInputs };
+		for (var i = 0; i < this.MixedElements.length; i++) {
+
+			// console.log(this.CompElements[i].constructor)
+			if (this.MixedElements[i].constructor === TextInput || this.MixedElements[i].constructor === MultChoice || this.MixedElements[i].constructor === DropDown) {
+				VariousInputs.push(this.MixedElements[i].getdata())
+
+			}
+			else { console.log('nomore'); }
+		}
+		console.log(JSON.stringify(Mixeddata));
+
 	}
 
 	//Class MixedInput ends

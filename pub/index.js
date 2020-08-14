@@ -23,7 +23,7 @@ var MixedInputJSON = {
             type: MultChoice,
             name: 'check_2',
             // YourQue: 'select whichever applies',
-            YourQue: '',
+            YourQue: 'select whichever applies',
             choices: ['5', '2', '3', '4'],
         },
         {
