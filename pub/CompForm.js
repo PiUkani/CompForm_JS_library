@@ -89,8 +89,8 @@ class CompPage {
 	getdata() {
 		// console.log(this.CompElements)
 		for (var i = 0; i < this.CompElements.length; i++) {
-			console.log(this.CompElements[i].constructor)
-			if (this.CompElements[i].constructor === TextInput) { this.CompElements[i].getdata() }
+			// console.log(this.CompElements[i].constructor)
+			if (this.CompElements[i].constructor === TextInput || this.CompElements[i].constructor === MultChoice || this.CompElements[i].constructor === DropDown) { this.CompElements[i].getdata() }
 
 			else { console.log('nomore'); }
 		}
@@ -144,7 +144,7 @@ class TextInput {
 		var ElemName = YourQue;
 		data[ElemName] = answer;
 		console.log(data);
-		// return data;
+		return data;
 	}
 
 	//Class TextInput ends	  
@@ -163,7 +163,7 @@ class MultChoice {
 		//create Div to contain question(label) and Multiple_choice
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-short-div';
-
+		ElemDiv.id = this.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
 		Mainlabel.className = 'compElem compElem-basic-short-label';
@@ -196,6 +196,21 @@ class MultChoice {
 		return ElemDiv;
 	}
 
+	getdata() {
+		var data = {};
+		const mainDiv = document.getElementById(this.name);
+		const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
+		var answer = [];
+		for (var i = 0; i < this.choices.length; i++) {
+			if (mainDiv.getElementsByTagName('input')[i].checked)
+				answer.push(mainDiv.getElementsByTagName('label')[i + 1].textContent);
+		}
+		var ElemName = YourQue;
+		data[ElemName] = answer;
+		console.log(data);
+		return data;
+	}
+
 	//Class MultChoice ends	  
 }
 
@@ -213,7 +228,7 @@ class RadioChoice {
 		//create Div to contain question(label) and Radio_choice
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-short-div';
-
+		ElemDiv.id = this.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
 		Mainlabel.className = 'compElem compElem-basic-short-label';
@@ -243,10 +258,22 @@ class RadioChoice {
 
 		return ElemDiv;
 	}
-
-	//Class RadioChoice ends	  
+	getdata() {
+		var data = {};
+		const mainDiv = document.getElementById(this.name);
+		const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
+		var answer = [];
+		for (var i = 0; i < this.choices.length; i++) {
+			if (mainDiv.getElementsByTagName('input')[i].checked)
+				answer.push(mainDiv.getElementsByTagName('label')[i + 1].textContent);
+		}
+		var ElemName = YourQue;
+		data[ElemName] = answer;
+		console.log(data);
+		return data;
+		//Class RadioChoice ends	  
+	}
 }
-
 
 class DropDown {
 	constructor(InputJSON) {
@@ -258,10 +285,10 @@ class DropDown {
 
 	returnElem() {
 
-		//create Div to contain question(label) and Radio_choice
+		//create Div to contain question(label) and DropDown
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-short-div';
-
+		ElemDiv.id = this.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
 		Mainlabel.className = 'compElem compElem-basic-short-label';
@@ -270,10 +297,10 @@ class DropDown {
 		ElemDiv.appendChild(Mainlabel);
 
 		let newDropDown = document.createElement('select');
-		// newDropDown.type = 'radio';
-		newDropDown.className = 'compElem compElem-basic-radio';
+		newDropDown.id = this.name + '-dropdown';
+		newDropDown.className = 'compElem compElem-basic-DropDown';
 		newDropDown.name = 'this.name-choice';
-		//Add radio to div
+		//Add DropDown to div
 		ElemDiv.appendChild(newDropDown);
 
 		for (var i = 0; i < this.choices.length; i++) {
@@ -288,6 +315,17 @@ class DropDown {
 		return ElemDiv;
 	}
 
+	getdata() {
+		var data = {};
+		const mainDiv = document.getElementById(this.name);
+		const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
+		const select_box = mainDiv.getElementsByTagName('select')[0];
+		const answer = select_box.options[select_box.selectedIndex].text;
+		var ElemName = YourQue;
+		data[ElemName] = answer;
+		console.log(data);
+		return data;
+	}
 	//Class DropDown ends	  
 }
 
@@ -353,22 +391,3 @@ class getDataButton {
 		return buttonContainer;
 	}
 }
-
-// const returnJSON = elements => {
-// 	// This is the function that is called on each element of the array.
-// 	const reducerFunction = (CompPage.CompElements, element) => {
-// 	// Add the current field to the object.
-// 	data[element.name] = element.value;
-// 	// For the demo only: show each step in the reducer’s progress.
-// 	console.log(JSON.stringify(data));
-// 	return data;
-// };
-// // This is used as the initial value of `data` in `reducerFunction()`.
-// const reducerInitialValue = {};
-// // To help visualize what happens, log the inital value.
-// console.log('Initial `data` value:', JSON.stringify(reducerInitialValue));
-// // Now we reduce by `call`-ing `Array.prototype.reduce()` on `elements`.
-// const formData = [].reduce.call(elements, reducerFunction, reducerInitialValue);
-// // The result is then returned for use elsewhere.
-// return formData;
-// };

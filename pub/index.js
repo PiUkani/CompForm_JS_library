@@ -3,9 +3,9 @@ newQuiz.elemShortAnswer({ name: 'short_1', YourQue: 'Does this spark joy?', leng
 
 newQuiz.elemMultChoice({ name: 'mul_choice_1', YourQue: 'Choose reasons for the sparks of joy', choices: ['1', '2', '3', '4'] });
 
-newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for the sparks of joy', choices: ['1', '2', '3', '4'], type: 'radio' });
+newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for the sparks of joy', choices: ['1', '2', '3', '4'], subtype: 'radio' });
 
-newQuiz.elemDropDown({ name: 'rad_choice_1', YourQue: 'Which one sparks the joy', choices: ['1', '2', '3', '4'] });
+newQuiz.elemDropDown({ name: 'drop_down_1', YourQue: 'Which one sparks the joy', choices: ['1', '2', '3', '4'] });
 
 
 
