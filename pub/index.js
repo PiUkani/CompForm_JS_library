@@ -10,19 +10,20 @@ newQuiz.elemDropDown({ name: 'rad_choice_1', YourQue: 'Which one sparks the joy'
 
 
 var MixedInputJSON = {
-    id: "classEvaluation",
+    name: "classEvaluation",
     YourQue: "Fill out Below class Eval",
     VariousInputs: [
         {
             type: TextInput,
             name: 'short_2',
             YourQue: 'describe your experience',
-            length: 100,
+            length: 50,
         },
         {
             type: MultChoice,
             name: 'check_2',
-            YourQue: 'select whichever applies',
+            // YourQue: 'select whichever applies',
+            YourQue: '',
             choices: ['5', '2', '3', '4'],
         },
         {
@@ -36,5 +37,22 @@ var MixedInputJSON = {
 };
 
 newQuiz.elemMixedInput(MixedInputJSON);
+newQuiz.elemgetDataButton({ text: 'Finish', CompForm: newQuiz })
 newQuiz.createCompPage('Demo_1');
+// newQuiz.createCompPage();
 
+
+
+const handlePageComplete = event => {
+    event.preventDefault();
+    console.log(newQuiz.CompElements)
+    const data = returnJSON(newQuiz.CompElements);
+
+    // Demo only: print the form data onscreen as a formatted JSON object.
+    const dataContainer = document.getElementsByClassName('results__display')[0];
+    // Use `JSON.stringify()` to make the output valid, human-readable JSON.
+    dataContainer.textContent = JSON.stringify(data, null, "  ");
+    // ...this is where we’d actually do something with the form data...
+
+    console.log(data)
+};

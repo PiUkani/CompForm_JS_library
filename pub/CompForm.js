@@ -13,6 +13,7 @@ class CompPage {
 		this.comppagename = comppagename;
 		this.CompElements = [];
 		this.id = '';
+		this.data;
 		//   this.question_num_option = question_num_option;
 	}
 
@@ -62,26 +63,37 @@ class CompPage {
 		this.CompElements.push(newMixedInput);
 	}
 
-	createCompPage(id) {
-		const MainCompPage = this.returnCompPage();
-		this.id = id;
-		const completePage = this.CompElements.reduce(function (thisPage, formItem) {
-			// if (formItem.constructor.name === 'SubmitButton') {
-			// 	thisPage.appendChild(formItem.returnElem(thisPage));
-			// } else {
-			thisPage.appendChild(formItem.returnElem());
-			// }
-			return thisPage;
-		}, MainCompPage);
+	elemgetDataButton(InputJSON) {
+		// this.ArgValidation(name, YourQue);
+		const newgetDataButton = new getDataButton(InputJSON);
+		// newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
+		this.CompElements.push(newgetDataButton);
+	}
 
+	createCompPage(id) {
+		this.id = id;
+		const completePage = this.returnCompPage();
+		for (var i = 0; i < this.CompElements.length; i++) {
+			completePage.appendChild(this.CompElements[i].returnElem());
+		}
 		document.querySelector('#' + id).appendChild(completePage);
 	}
 
-
 	returnCompPage() {
 		const MainCompPage = document.createElement('div');
+		MainCompPage.id = 'main-Comp-page';
 		MainCompPage.className = 'compElem compElem-div';
 		return MainCompPage;
+	}
+
+	getdata() {
+		// console.log(this.CompElements)
+		for (var i = 0; i < this.CompElements.length; i++) {
+			console.log(this.CompElements[i].constructor)
+			if (this.CompElements[i].constructor === TextInput) { this.CompElements[i].getdata() }
+
+			else { console.log('nomore'); }
+		}
 	}
 
 	//Class CompPage Ends
@@ -116,10 +128,23 @@ class TextInput {
 		//create Div to contain label and text input
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-short-div';
-
+		ElemDiv.id = this.name;
+		newTextInput.id = ElemDiv.id + '-label';
+		labelInputArea.id = ElemDiv.id + '-input';
 		ElemDiv.appendChild(labelInputArea)
 		ElemDiv.appendChild(newTextInput)
 		return ElemDiv;
+	}
+
+	getdata() {
+		var data = {};
+		const mainDiv = document.getElementById(this.name);
+		const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
+		const answer = mainDiv.getElementsByTagName('input')[0].value;
+		var ElemName = YourQue;
+		data[ElemName] = answer;
+		console.log(data);
+		// return data;
 	}
 
 	//Class TextInput ends	  
@@ -155,7 +180,7 @@ class MultChoice {
 
 			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].type = 'radio' : this[VarMultChoice + 'op' + i].type = 'checkbox';
 			this[VarMultChoice + 'op' + i].className = 'compElem compElem-basic-checkbox';
-			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].name = 'this.name-choice' : this[VarMultChoice + 'op' + i].name = 'this.name-choice' + i;
+			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].name = this.name + '-choice' : this[VarMultChoice + 'op' + i].name = this.name + '-choice' + i;
 			//Add checkbox to div
 			ElemDiv.appendChild(this[VarMultChoice + 'op' + i]);
 
@@ -280,8 +305,8 @@ class MixedInput {
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-comp-vertical-div';
 
-		ElemDiv.id = this.Input.id;
-
+		// ElemDiv.id = this.Input.id;
+		ElemDiv.name = this.Input.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
 		Mainlabel.className = 'compElem compElem-basic-short-label';
@@ -299,15 +324,51 @@ class MixedInput {
 
 			// this[ParseInputTypes + Inputtypes.type] = new TextInput(Inputtypes.name, Inputtypes.YourQue, Inputtypes.length)
 			ElemDiv.appendChild(this[ParseInputTypes + Inputtypes.type].returnElem());
-
+			// ElemDiv.childNodes.reduce()
 		}
-
 
 		return ElemDiv;
 	}
 
-
-
-
-
+	//Class MixedInput ends
 }
+
+
+class getDataButton {
+	constructor(InputJSON) {
+		this.CompForm = InputJSON.CompForm;
+		this.text = InputJSON.text;
+	}
+
+	returnElem() {
+		const newButton = document.createElement('BUTTON');
+		newButton.className = 'compElem compElem-basic-button';
+		newButton.type = 'button';
+		const buttonContainer = document.createElement('div');
+		buttonContainer.className = 'compElem compElem-basic-short-div';
+		newButton.value = this.text;
+		buttonContainer.appendChild(newButton);
+		newButton.onclick = this.CompForm.getdata;
+
+		return buttonContainer;
+	}
+}
+
+// const returnJSON = elements => {
+// 	// This is the function that is called on each element of the array.
+// 	const reducerFunction = (CompPage.CompElements, element) => {
+// 	// Add the current field to the object.
+// 	data[element.name] = element.value;
+// 	// For the demo only: show each step in the reducer’s progress.
+// 	console.log(JSON.stringify(data));
+// 	return data;
+// };
+// // This is used as the initial value of `data` in `reducerFunction()`.
+// const reducerInitialValue = {};
+// // To help visualize what happens, log the inital value.
+// console.log('Initial `data` value:', JSON.stringify(reducerInitialValue));
+// // Now we reduce by `call`-ing `Array.prototype.reduce()` on `elements`.
+// const formData = [].reduce.call(elements, reducerFunction, reducerInitialValue);
+// // The result is then returned for use elsewhere.
+// return formData;
+// };
