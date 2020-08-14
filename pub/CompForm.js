@@ -88,12 +88,17 @@ class CompPage {
 
 	getdata() {
 		// console.log(this.CompElements)
+		var allAns = [];
+		var data = { 'AllQA': allAns };
 		for (var i = 0; i < this.CompElements.length; i++) {
 			// console.log(this.CompElements[i].constructor)
-			if (this.CompElements[i].constructor === TextInput || this.CompElements[i].constructor === MultChoice || this.CompElements[i].constructor === DropDown || this.CompElements[i].constructor === MixedInput) { this.CompElements[i].getdata() }
+			if (this.CompElements[i].constructor === TextInput || this.CompElements[i].constructor === MultChoice || this.CompElements[i].constructor === DropDown || this.CompElements[i].constructor === MixedInput) { allAns.push(this.CompElements[i].getdata()) }
 
-			else { console.log('nomore'); }
+			else { console.log('no getdata func'); }
 		}
+
+		return data;
+
 	}
 
 	//Class CompPage Ends
@@ -383,13 +388,20 @@ class MixedInput {
 			else { console.log('nomore'); }
 		}
 		console.log(JSON.stringify(Mixeddata));
-
+		return Mixeddata;
 	}
 
 	//Class MixedInput ends
 }
 
+class RubricTable {
+	constructor(InputJSON) {
+		this.Input = (InputJSON);
+	}
 
+
+
+}
 class getDataButton {
 	constructor(InputJSON) {
 		this.CompForm = InputJSON.CompForm;

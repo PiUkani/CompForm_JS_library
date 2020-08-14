@@ -7,8 +7,6 @@ newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for t
 
 newQuiz.elemDropDown({ name: 'drop_down_1', YourQue: 'Which one sparks the joy', choices: ['1', '2', '3', '4'] });
 
-
-
 var MixedInputJSON = {
     name: "classEvaluation",
     YourQue: "Fill out Below class Eval",
@@ -39,20 +37,31 @@ var MixedInputJSON = {
 newQuiz.elemMixedInput(MixedInputJSON);
 newQuiz.elemgetDataButton({ text: 'Finish', CompForm: newQuiz })
 newQuiz.createCompPage('Demo_1');
-// newQuiz.createCompPage();
 
 
+function CompleteQuiz(inputJSON) {
+    console.log(inputJSON);
+    var DisplayData = document.getElementById("output");
+    const output_JSON_container = document.createElement('pre');
+    output_JSON_container.appendChild(document.createElement('code'));
+    const JsonOut = document.createTextNode(JSON.stringify(inputJSON, null, 1));
+    output_JSON_container.appendChild(JsonOut);
+    output_JSON_container.name = this.name;
+    output_JSON_container.className = 'output-JSON';
+    DisplayData.appendChild(output_JSON_container);
+}
 
-const handlePageComplete = event => {
-    event.preventDefault();
-    console.log(newQuiz.CompElements)
-    const data = returnJSON(newQuiz.CompElements);
 
-    // Demo only: print the form data onscreen as a formatted JSON object.
-    const dataContainer = document.getElementsByClassName('results__display')[0];
-    // Use `JSON.stringify()` to make the output valid, human-readable JSON.
-    dataContainer.textContent = JSON.stringify(data, null, "  ");
-    // ...this is where we’d actually do something with the form data...
+// const handlePageComplete = event => {
+//     event.preventDefault();
+//     console.log(newQuiz.CompElements)
+//     const data = returnJSON(newQuiz.CompElements);
 
-    console.log(data)
-};
+//     // Demo only: print the form data onscreen as a formatted JSON object.
+//     const dataContainer = document.getElementsByClassName('results__display')[0];
+//     // Use `JSON.stringify()` to make the output valid, human-readable JSON.
+//     dataContainer.textContent = JSON.stringify(data, null, "  ");
+//     // ...this is where we’d actually do something with the form data...
+
+//     console.log(data)
+// };
