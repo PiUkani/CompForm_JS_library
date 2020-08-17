@@ -59,14 +59,14 @@ class CompPage {
 	elemMixedInput(InputJSON) {
 		// this.ArgValidation(name, YourQue);
 		const newMixedInput = new MixedInput(InputJSON);
-		// newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
+		newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
 		this.CompElements.push(newMixedInput);
 	}
 
 	elemgetDataButton(InputJSON) {
 		// this.ArgValidation(name, YourQue);
 		const newgetDataButton = new getDataButton(InputJSON);
-		// newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
+		//  newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
 		this.CompElements.push(newgetDataButton);
 	}
 
@@ -118,21 +118,21 @@ class TextInput {
 	}
 	static name = 'TextInput'
 	returnElem() {
-		const newTextInput = document.createElement('input');
+		const newTextInput = document.createElement('textarea');
 
-		newTextInput.type = 'text';
-		newTextInput.name = this.name;
-		newTextInput.size = this.length;
-		newTextInput.className = 'compElem compElem-basic-short-text'
-
+		// newTextInput.type = 'textarea';
+		newTextInput.id = this.name;
+		newTextInput.style.width = this.length * 10 + 'px';
+		newTextInput.className = 'compElem compElem-basic-text';
+		newTextInput.oninput = function () { increase_area(this); };
 		//create label
 		let labelInputArea = document.createElement('label');
-		labelInputArea.className = 'compElem compElem-basic-short-label';
+		labelInputArea.className = 'compElem compElem-basic-label';
 		labelInputArea.textContent = this.YourQue;
 
 		//create Div to contain label and text input
 		const ElemDiv = document.createElement('div');
-		ElemDiv.className = 'compElem compElem-basic-short-div';
+		ElemDiv.className = 'compElem compElem-basic-div';
 		ElemDiv.id = this.name;
 		newTextInput.id = ElemDiv.id + '-label';
 		labelInputArea.id = ElemDiv.id + '-input';
@@ -145,15 +145,23 @@ class TextInput {
 		var data = {};
 		const mainDiv = document.getElementById(this.name);
 		const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
-		const answer = mainDiv.getElementsByTagName('input')[0].value;
+		const answer = mainDiv.getElementsByTagName('textarea')[0].value;
 		var ElemName = YourQue;
 		data[ElemName] = answer;
 		console.log(data);
 		return data;
 	}
 
+
+
 	//Class TextInput ends	  
 }
+//Misc for TextInput
+function increase_area(element) {
+	element.style.height = "1px";
+	element.style.height = (element.scrollHeight) + "px";
+}
+
 
 
 class MultChoice {
@@ -167,11 +175,11 @@ class MultChoice {
 	returnElem() {
 		//create Div to contain question(label) and Multiple_choice
 		const ElemDiv = document.createElement('div');
-		ElemDiv.className = 'compElem compElem-basic-short-div';
+		ElemDiv.className = 'compElem compElem-basic-div';
 		ElemDiv.id = this.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
-		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.className = 'compElem compElem-basic-label';
 		Mainlabel.textContent = this.YourQue;
 
 		ElemDiv.appendChild(Mainlabel);
@@ -232,11 +240,11 @@ class RadioChoice {
 
 		//create Div to contain question(label) and Radio_choice
 		const ElemDiv = document.createElement('div');
-		ElemDiv.className = 'compElem compElem-basic-short-div';
+		ElemDiv.className = 'compElem compElem-basic-div';
 		ElemDiv.id = this.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
-		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.className = 'compElem compElem-basic-label';
 		Mainlabel.textContent = this.YourQue;
 
 		ElemDiv.appendChild(Mainlabel);
@@ -292,11 +300,11 @@ class DropDown {
 
 		//create Div to contain question(label) and DropDown
 		const ElemDiv = document.createElement('div');
-		ElemDiv.className = 'compElem compElem-basic-short-div';
+		ElemDiv.className = 'compElem compElem-basic-div';
 		ElemDiv.id = this.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
-		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.className = 'compElem compElem-basic-label';
 		Mainlabel.textContent = this.YourQue;
 
 		ElemDiv.appendChild(Mainlabel);
@@ -352,7 +360,7 @@ class MixedInput {
 		ElemDiv.name = this.Input.name;
 		//Question(label)
 		let Mainlabel = document.createElement('label');
-		Mainlabel.className = 'compElem compElem-basic-short-label';
+		Mainlabel.className = 'compElem compElem-basic-label';
 		Mainlabel.textContent = this.Input.YourQue;
 
 		ElemDiv.appendChild(Mainlabel);
@@ -413,7 +421,7 @@ class getDataButton {
 		newButton.className = 'compElem compElem-basic-button';
 		newButton.type = 'button';
 		const buttonContainer = document.createElement('div');
-		buttonContainer.className = 'compElem compElem-basic-short-div';
+		buttonContainer.className = 'compElem compElem-basic-div';
 		newButton.value = this.text;
 		buttonContainer.appendChild(newButton);
 		newButton.onclick = this.CompForm.getdata;

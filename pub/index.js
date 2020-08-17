@@ -1,11 +1,11 @@
 const newQuiz = initCompPage('Demo_1');
 newQuiz.elemShortAnswer({ name: 'short_1', YourQue: 'Does this spark joy?', length: 50 });
 
-newQuiz.elemMultChoice({ name: 'mul_choice_1', YourQue: 'Choose reasons for the sparks of joy', choices: ['1', '2', '3', '4'] });
+newQuiz.elemMultChoice({ name: 'mul_choice_1', YourQue: 'Choose reasons for the sparks of joy', choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'] });
 
-newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for the sparks of joy', choices: ['1', '2', '3', '4'], subtype: 'radio' });
+newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for the sparks of joy', choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'], subtype: 'radio' });
 
-newQuiz.elemDropDown({ name: 'drop_down_1', YourQue: 'Which one sparks the joy', choices: ['1', '2', '3', '4'] });
+newQuiz.elemDropDown({ name: 'drop_down_1', YourQue: 'Which one sparks the joy', choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'] });
 
 var MixedInputJSON = {
     name: "classEvaluation",
@@ -22,20 +22,20 @@ var MixedInputJSON = {
             name: 'check_2',
             // YourQue: 'select whichever applies',
             YourQue: 'select whichever applies',
-            choices: ['5', '2', '3', '4'],
+            choices: ['5', 'Option_2', 'Option_3', 'Option_4'],
         },
         {
             subtype: 'radio',
             type: MultChoice,
             name: 'radio_2',
             YourQue: 'select one of the following',
-            choices: ['1', '2', '3', '4'],
+            choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],
         }
     ],
 };
 
 newQuiz.elemMixedInput(MixedInputJSON);
-newQuiz.elemgetDataButton({ text: 'Finish', CompForm: newQuiz })
+// newQuiz.elemgetDataButton({ text: 'Finish', CompForm: newQuiz })
 newQuiz.createCompPage('Demo_1');
 
 

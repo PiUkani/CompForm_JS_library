@@ -7,36 +7,85 @@
   border-radius: 10px;
 }
 
-.compElem-basic-short-label {
+.compElem-basic-label {
   font-weight: 600;
   margin: 5px;
   display: block;
+  font-size: 20px;
 }
 
 /* compElem-type(basic,complex)-len(short,long)-basictype(text,checkbox,dropdown)) */
-.compElem-input-area-email, 
-.compElem-input-area-password,
-.compElem-basic-short-text {
-  width: auto;
+
+.compElem-basic-text {
+  width: 25%;
   height: 40px;
   border-width: 1px;
   border-radius: 10px;
+  border-color: rgb(110, 107, 107);
+  outline: 0;
+  transition: .1s;
+  font-size:19px;
+  word-break: break-all;
+  resize: none;
+    overflow: hidden;
 }
 
 .compElem-basic-choice-label{
   margin: 5px;
+  
   /* display: block; */
 }
 
-.compElem-input-area-email, 
-.compElem-input-area-password, 
-.compElem-basic-short-text:focus {
-  background-color: yellow;
+.compElem-basic-text:focus {
   border-width: 2px;
   border-radius: 5px;
+  border-color: #0f7ef1;
 }
 
 .compElem-comp-vertical-div{
   border: solid black 2px;
   border-radius: 5px;
+}
+
+.compElem-basic-div{
+  margin:5px;
+}
+.ComplElem {
+  
+  animation-name: move;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  animation-delay: 2s;
+}
+
+.compElem-basic-radio,
+.compElem-basic-checkbox{
+width: 20px;
+height: 20px;
+}
+
+.compElem-basic-radio:focus,
+.compElem-basic-checkbox:focus{
+  border-width: 5px;
+  border-radius: 5px;
+  border-color: #0f7ef1;
+}
+.compElem-basic-DropDown {
+	display: block;
+	font-size: 16px;
+	padding: .6em 1.4em .5em .8em;
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+
+  
+}
+.compElem-basic-DropDown:focus {
+	border-color: #000;
+	box-shadow: 0 0 1px 1px #0f7ef1;
+	/* box-shadow: 0 0 0 3px -moz-mac-focusring; */
+	color: #222;
+	outline: none;
 }
