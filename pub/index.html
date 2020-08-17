@@ -44,15 +44,21 @@
       <div class='demo_code'>
         <pre>
         const newQuiz = initCompPage('Demo_1');
-        newQuiz.elemShortAnswer({ name: 'short_1', YourQue: 'Does this spark joy?', length: 50 });
+        newQuiz.elemShortAnswer({ name: 'short_1', YourQue:
+         'Does this spark joy?', length: 50 });
 
-        newQuiz.elemMultChoice({ name: 'mul_choice_1', YourQue: 'Choose reasons for the sparks of joy', choices:
+        newQuiz.elemMultChoice({ name: 'mul_choice_1', YourQue: 'Choose reasons 
+        for the sparks of joy',
+         choices:
         ['Option_1', 'Option_2', 'Option_3', 'Option_4'] });
 
-        newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for the sparks of joy', choices:
+        newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for 
+        the sparks of joy',
+         choices:
         ['Option_1', 'Option_2', 'Option_3', 'Option_4'], subtype: 'radio' });
 
-        newQuiz.elemDropDown({ name: 'drop_down_1', YourQue: 'Which one sparks the joy', choices: ['Option_1',
+        newQuiz.elemDropDown({ name: 'drop_down_1', YourQue:
+         'Which one sparks the joy', choices: ['Option_1',
         'Option_2',
         'Option_3', 'Option_4'] });
 
@@ -86,8 +92,8 @@
       </div>
     </div>
 
-  </div><button class='get-data-button' onclick="CompleteQuiz(newQuiz.getdata());">Get Data</button>
-  <div id='output'></div>
+  </div>
+  <div id='output'><button class='get-data-button' onclick="CompleteQuiz(newQuiz.getdata());">Get Data</button></div>
   <script type="text/javascript" src="CompForm.js"></script>
   <script type="text/javascript" src="index.js"></script>
 
