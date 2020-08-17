@@ -24,7 +24,6 @@ font-family: 'Calibri', 'Cambria Math';
   min-height: 400px;
 }
 .demo_code{
-margin-left: 15%;
 flex-grow: 1;
 }
 .header {
