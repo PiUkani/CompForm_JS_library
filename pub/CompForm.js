@@ -315,10 +315,15 @@ class DropDown {
 		newDropDown.name = 'this.name-choice';
 		//Add DropDown to div
 		ElemDiv.appendChild(newDropDown);
-
+		var Sublabel = document.createElement('option');
+		Sublabel.className = 'compElem compElem-basic-choice-label';
+		Sublabel.textContent = 'Choose an option';
+		Sublabel.disabled = true;
+		Sublabel.selected = true;
+		newDropDown.appendChild(Sublabel);
 		for (var i = 0; i < this.choices.length; i++) {
 			//Individual labels for radioes
-			let Sublabel = document.createElement('option');
+			Sublabel = document.createElement('option');
 			Sublabel.className = 'compElem compElem-basic-choice-label';
 			Sublabel.textContent = this.choices[i];
 			//Add radio to div

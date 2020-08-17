@@ -88,3 +88,7 @@ font-family: 'Calibri', 'Cambria Math';
     letter-spacing: 1px;
     border-color: #333;
 }
+
+#footer{
+  height: 50px;
+}
