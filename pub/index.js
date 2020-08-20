@@ -1,17 +1,39 @@
 const newQuiz = initCompPage('Demo_1');
-newQuiz.elemShortAnswer({ name: 'short_1', YourQue: 'Does this spark joy?', length: 50 });
+newQuiz.elemShortAnswer({
+    name: 'short_1',
+    YourQue: 'Does this spark joy?',
+    length: 50
+});
 
-newQuiz.elemMultChoice({ name: 'mul_choice_1', YourQue: 'Choose reasons for the sparks of joy', choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'] });
+newQuiz.elemMultChoice({
+    name: 'mul_choice_1',
+    YourQue: 'Choose reasons for the sparks of joy',
+    choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4']
+});
 
-newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for the sparks of joy', choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'], subtype: 'radio' });
+newQuiz.elemMultChoice({
+    name: 'rad_choice_1',
+    YourQue: 'Choose one reason for the sparks of joy',
+    choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],
+    subtype: 'radio'
+});
 
-newQuiz.elemDropDown({ name: 'drop_down_1', YourQue: 'Which one sparks the joy', choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'] });
+newQuiz.elemDropDown({
+    name: 'drop_down_1',
+    YourQue: 'Which one sparks the joy',
+    choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4']
+});
+
+newQuiz.elemImageChooser({
+    name: 'img_choice_1',
+    YourQue: 'Choose the image that best describes your mood',
+    choices: ['./imgs/1.png', './imgs/2.png', './imgs/3.png', './imgs/4.png']
+});
 
 var MixedInputJSON = {
     name: "classEvaluation",
     YourQue: "Fill out Below class Eval",
-    VariousInputs: [
-        {
+    VariousInputs: [{
             type: TextInput,
             name: 'short_2',
             YourQue: 'describe your experience',
@@ -40,7 +62,6 @@ newQuiz.createCompPage('Demo_1');
 
 
 function CompleteQuiz(inputJSON) {
-    console.log(inputJSON);
     var DisplayData = document.getElementById("output");
     const output_JSON_container = document.createElement('pre');
     output_JSON_container.appendChild(document.createElement('code'));

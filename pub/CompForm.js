@@ -63,6 +63,13 @@ class CompPage {
 		this.CompElements.push(newMixedInput);
 	}
 
+	elemImageChooser(type, name, YourQue, choices) {
+		this.ArgValidation(name, YourQue);
+		const newImageChooser = new ImageChooser(type, name, YourQue, choices);
+		newImageChooser.YourQue = this.CompElements.length + 1 + '.' + newImageChooser.YourQue;
+		this.CompElements.push(newImageChooser);
+	}
+
 	elemgetDataButton(InputJSON) {
 		// this.ArgValidation(name, YourQue);
 		const newgetDataButton = new getDataButton(InputJSON);
@@ -89,12 +96,14 @@ class CompPage {
 	getdata() {
 		// console.log(this.CompElements)
 		var allAns = [];
-		var data = { 'AllQA': allAns };
+		var data = {
+			'AllQA': allAns
+		};
 		for (var i = 0; i < this.CompElements.length; i++) {
 			// console.log(this.CompElements[i].constructor)
-			if (this.CompElements[i].constructor === TextInput || this.CompElements[i].constructor === MultChoice || this.CompElements[i].constructor === DropDown || this.CompElements[i].constructor === MixedInput) { allAns.push(this.CompElements[i].getdata()) }
+			allAns.push(this.CompElements[i].getdata())
 
-			else { console.log('no getdata func'); }
+
 		}
 
 		return data;
@@ -106,8 +115,6 @@ class CompPage {
 
 
 
-
-//TODO add line feature lines can define if long answer or short answer
 //Basic Inputs
 
 class TextInput {
@@ -124,7 +131,9 @@ class TextInput {
 		newTextInput.id = this.name;
 		newTextInput.style.width = this.length * 10 + 'px';
 		newTextInput.className = 'compElem compElem-basic-text';
-		newTextInput.oninput = function () { increase_area(this); };
+		newTextInput.oninput = function () {
+			increase_area(this);
+		};
 		//create label
 		let labelInputArea = document.createElement('label');
 		labelInputArea.className = 'compElem compElem-basic-label';
@@ -148,7 +157,7 @@ class TextInput {
 		const answer = mainDiv.getElementsByTagName('textarea')[0].value;
 		var ElemName = YourQue;
 		data[ElemName] = answer;
-		console.log(data);
+		//console.log(data);
 		return data;
 	}
 
@@ -191,10 +200,10 @@ class MultChoice {
 			this[VarMultChoice + 'op' + i] = document.createElement('input');
 
 
-			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].type = 'radio' : this[VarMultChoice + 'op' + i].type = 'checkbox';
+			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].type = 'radio': this[VarMultChoice + 'op' + i].type = 'checkbox';
 			this[VarMultChoice + 'op' + i].className = 'compElem compElem-basic-checkbox';
-			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].name = this.name + '-choice' : this[VarMultChoice + 'op' + i].name = this.name + '-choice' + i;
-			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].id = this.name + '-choice' + i : this[VarMultChoice + 'op' + i].id = this.name + '-choice' + i;
+			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].name = this.name + '-choice': this[VarMultChoice + 'op' + i].name = this.name + '-choice' + i;
+			this[VarMultChoice + 'op' + i].id = this.name + '-choice' + i;
 			//Add checkbox to div
 			ElemDiv.appendChild(this[VarMultChoice + 'op' + i]);
 
@@ -222,7 +231,7 @@ class MultChoice {
 		}
 		var ElemName = YourQue;
 		data[ElemName] = answer;
-		console.log(data);
+		//console.log(data);
 		return data;
 	}
 
@@ -259,6 +268,7 @@ class RadioChoice {
 			this[VarRadioChoice + 'op' + i].type = 'radio';
 			this[VarRadioChoice + 'op' + i].className = 'compElem compElem-basic-radio';
 			this[VarRadioChoice + 'op' + i].name = 'this.name-choice';
+			this[VarRadioChoice + 'op' + i].id = this.name + '-choice' + i;
 			//Add radio to div
 			ElemDiv.appendChild(this[VarRadioChoice + 'op' + i]);
 
@@ -266,6 +276,7 @@ class RadioChoice {
 			let Sublabel = document.createElement('label');
 			Sublabel.className = 'compElem compElem-basic-choice-label';
 			Sublabel.textContent = this.choices[i];
+			Sublabel.htmlFor = this.name + '-choice' + i;
 			//Add radio to div
 			ElemDiv.appendChild(Sublabel);
 		}
@@ -284,7 +295,7 @@ class RadioChoice {
 		}
 		var ElemName = YourQue;
 		data[ElemName] = answer;
-		console.log(data);
+		//console.log(data);
 		return data;
 		//Class RadioChoice ends	  
 	}
@@ -343,7 +354,7 @@ class DropDown {
 		const answer = select_box.options[select_box.selectedIndex].text;
 		var ElemName = YourQue;
 		data[ElemName] = answer;
-		console.log(data);
+		//console.log(data);
 		return data;
 	}
 	//Class DropDown ends	  
@@ -372,8 +383,6 @@ class MixedInput {
 
 		ElemDiv.appendChild(Mainlabel);
 
-
-
 		var ParseInputTypes = 'MixedInput-';
 
 
@@ -388,21 +397,22 @@ class MixedInput {
 
 		return ElemDiv;
 	}
+
 	getdata() {
 		// console.log(this.CompElements)
 
 		var VariousInputs = [];
-		var Mixeddata = { 'VariousInputs': VariousInputs };
+		var Mixeddata = {
+			'VariousInputs': VariousInputs
+		};
 		for (var i = 0; i < this.MixedElements.length; i++) {
 
 			// console.log(this.CompElements[i].constructor)
-			if (this.MixedElements[i].constructor === TextInput || this.MixedElements[i].constructor === MultChoice || this.MixedElements[i].constructor === DropDown) {
-				VariousInputs.push(this.MixedElements[i].getdata())
 
-			}
-			else { console.log('nomore'); }
+			VariousInputs.push(this.MixedElements[i].getdata())
+
+
 		}
-		console.log(JSON.stringify(Mixeddata));
 		return Mixeddata;
 	}
 
@@ -445,19 +455,23 @@ class ImageChooser {
 			this[VarImageChooser + 'op' + i] = document.createElement('input');
 
 
-			(this.subtype === 'radio') ? this[VarImageChooser + 'op' + i].type = 'radio' : this[VarImageChooser + 'op' + i].type = 'checkbox';
-			this[VarImageChooser + 'op' + i].className = 'compElem compElem-basic-checkbox';
-			(this.subtype === 'radio') ? this[VarImageChooser + 'op' + i].id = this.name + '-choice' : this[VarImageChooser + 'op' + i].id = this.name + '-choice' + i;
+			this[VarImageChooser + 'op' + i].type = 'checkbox';
+			this[VarImageChooser + 'op' + i].className = 'compElem compElem-basic-img-checkbox';
+			this[VarImageChooser + 'op' + i].id = this.name + '-imgchoice' + i;
 			//Add checkbox to div
 			ElemDiv.appendChild(this[VarImageChooser + 'op' + i]);
 
 			//Individual labels for checkboxes
 			let Sublabel = document.createElement('label');
-			Sublabel.className = 'compElem compElem-basic-choice-label';
-			Sublabel.textContent = this.choices[i];
-
+			Sublabel.className = 'compElem compElem-basic-image-label';
+			Sublabel.htmlFor = this.name + '-imgchoice' + i;
+			let image = document.createElement('img');
+			image.className = 'compElem compElem-basic-img-choice'
+			image.src = this.choices[i];
 			//Add checkbox to div
+			Sublabel.appendChild(image);
 			ElemDiv.appendChild(Sublabel);
+
 		}
 
 
@@ -471,11 +485,11 @@ class ImageChooser {
 		var answer = [];
 		for (var i = 0; i < this.choices.length; i++) {
 			if (mainDiv.getElementsByTagName('input')[i].checked)
-				answer.push(mainDiv.getElementsByTagName('label')[i + 1].textContent);
+				answer.push(mainDiv.getElementsByTagName('img')[i].src);
 		}
 		var ElemName = YourQue;
 		data[ElemName] = answer;
-		console.log(data);
+		//console.log(data);
 		return data;
 	}
 

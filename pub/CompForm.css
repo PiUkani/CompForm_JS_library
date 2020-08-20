@@ -24,15 +24,15 @@
   border-color: rgb(110, 107, 107);
   outline: 0;
   transition: .1s;
-  font-size:19px;
+  font-size: 19px;
   word-break: break-all;
   resize: none;
-    overflow: hidden;
+  overflow: hidden;
 }
 
-.compElem-basic-choice-label{
+.compElem-basic-choice-label {
   margin: 5px;
-  
+  cursor: pointer;
   /* display: block; */
 }
 
@@ -42,16 +42,17 @@
   border-color: #0f7ef1;
 }
 
-.compElem-comp-vertical-div{
+.compElem-comp-vertical-div {
   border: solid black 2px;
   border-radius: 5px;
 }
 
-.compElem-basic-div{
-  margin:5px;
+.compElem-basic-div {
+  margin: 10px;
 }
+
 .ComplElem {
-  
+
   animation-name: move;
   animation-duration: .4s;
   animation-fill-mode: both;
@@ -59,31 +60,66 @@
 }
 
 .compElem-basic-radio,
-.compElem-basic-checkbox{
-width: 20px;
-height: 20px;
+.compElem-basic-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .compElem-basic-radio:focus,
-.compElem-basic-checkbox:focus{
+.compElem-basic-checkbox:focus {
   border-width: 5px;
   border-radius: 5px;
   border-color: #0f7ef1;
 }
+
 .compElem-basic-DropDown {
-	display: block;
-	font-size: 16px;
-	padding: .6em 1.4em .5em .8em;
-	max-width: 100%;
-	box-sizing: border-box;
-	margin: 0;
-	border: 1px solid #aaa;
-	border-radius: 5px;
+  display: block;
+  font-size: 16px;
+  padding: .6em 1.4em .5em .8em;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
 .compElem-basic-DropDown:focus {
-	border-color: #000;
-	box-shadow: 0 0 1px 1px #0f7ef1;
-	/* box-shadow: 0 0 0 3px -moz-mac-focusring; */
-	color: #222;
-	outline: none;
+  border-color: #000;
+  box-shadow: 0 0 1px 1px #0f7ef1;
+  /* box-shadow: 0 0 0 3px -moz-mac-focusring; */
+  color: #222;
+  outline: none;
+}
+
+.compElem-basic-img-checkbox {
+  display: none;
+}
+
+.compElem-basic-image-label {
+  border: 1.5px solid #000;
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+  /* position: relative; */
+
+  cursor: pointer;
+}
+
+.compElem-basic-image-label:hover {
+  display: inline-block;
+  border: 1.5px solid #0f7ef1;
+  /* position: relative; */
+  cursor: pointer;
+}
+
+.compElem-basic-image-label::before {
+  border: solid black 2px;
+  background-color: grey;
+}
+
+:checked+.compElem-basic-image-label .compElem-basic-img-choice {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px #0f7ef1;
 }
