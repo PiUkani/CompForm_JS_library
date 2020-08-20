@@ -31,8 +31,8 @@ newQuiz.elemImageChooser({
 });
 
 var MixedInputJSON = {
-    name: "classEvaluation",
-    YourQue: "Fill out Below class Eval",
+    name: 'classEvaluation',
+    YourQue: 'Fill out Below class Eval',
     VariousInputs: [{
             type: TextInput,
             name: 'short_2',
@@ -56,13 +56,44 @@ var MixedInputJSON = {
     ],
 };
 
+
+var RubricTable = {
+    questions: [{
+        name: 'Evaluate your joy',
+        YourQue: 'Select appropriate response for each row',
+        cols: ['col1', 'col2', 'col3', 'col4'],
+        row: [{
+                id: 'row1',
+                value: 'row_one'
+            },
+            {
+                id: 'row2',
+                value: 'row_two'
+            },
+            {
+                id: 'row3',
+                value: 'row_three'
+            },
+            {
+                id: 'row4',
+                value: 'row_four'
+            }
+        ],
+        cells: {
+            'row1': ['cell11', 'cell12', 'cell13', 'cell14'],
+            'row2': ['cell11', 'cell12', 'cell13', 'cell14'],
+            'row3': ['cell11', 'cell12', 'cell13', 'cell14'],
+            'row4': ['cell11', 'cell12', 'cell13', 'cell14'],
+        }
+    }]
+};
 newQuiz.elemMixedInput(MixedInputJSON);
 // newQuiz.elemgetDataButton({ text: 'Finish', CompForm: newQuiz })
 newQuiz.createCompPage('Demo_1');
 
 
 function CompleteQuiz(inputJSON) {
-    var DisplayData = document.getElementById("output");
+    var DisplayData = document.getElementById('output');
     const output_JSON_container = document.createElement('pre');
     output_JSON_container.id = 'pre_out';
     output_JSON_container.appendChild(document.createElement('code'));
@@ -82,7 +113,7 @@ function CompleteQuiz(inputJSON) {
 //     // Demo only: print the form data onscreen as a formatted JSON object.
 //     const dataContainer = document.getElementsByClassName('results__display')[0];
 //     // Use `JSON.stringify()` to make the output valid, human-readable JSON.
-//     dataContainer.textContent = JSON.stringify(data, null, "  ");
+//     dataContainer.textContent = JSON.stringify(data, null, '  ');
 //     // ...this is where we’d actually do something with the form data...
 
 //     console.log(data)
