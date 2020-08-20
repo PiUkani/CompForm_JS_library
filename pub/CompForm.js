@@ -201,6 +201,7 @@ class MultChoice {
 			let Sublabel = document.createElement('label');
 			Sublabel.className = 'compElem compElem-basic-choice-label';
 			Sublabel.textContent = this.choices[i];
+			(this.subtype === 'radio') ? Sublabel.htmlFor = this.name + '-choice' : Sublabel.htmlFor = this.name + '-choice' + i;
 			//Add checkbox to div
 			ElemDiv.appendChild(Sublabel);
 		}
@@ -415,6 +416,72 @@ class RubricTable {
 
 
 }
+
+class ImageChooser {
+	constructor(InputJSON) {
+		this.subtype = InputJSON.subtype;
+		this.name = InputJSON.name;
+		this.YourQue = InputJSON.YourQue;
+		this.choices = InputJSON.choices;
+	}
+
+	returnElem() {
+		//create Div to contain question(label) and Multiple_choice
+		const ElemDiv = document.createElement('div');
+		ElemDiv.className = 'compElem compElem-basic-div';
+		ElemDiv.id = this.name;
+		//Question(label)
+		let Mainlabel = document.createElement('label');
+		Mainlabel.className = 'compElem compElem-basic-label';
+		Mainlabel.textContent = this.YourQue;
+
+		ElemDiv.appendChild(Mainlabel);
+
+		var VarImageChooser = 'newImageChooser';
+
+
+		for (var i = 0; i < this.choices.length; i++) {
+			this[VarImageChooser + 'op' + i] = document.createElement('input');
+
+
+			(this.subtype === 'radio') ? this[VarImageChooser + 'op' + i].type = 'radio' : this[VarImageChooser + 'op' + i].type = 'checkbox';
+			this[VarImageChooser + 'op' + i].className = 'compElem compElem-basic-checkbox';
+			(this.subtype === 'radio') ? this[VarImageChooser + 'op' + i].id = this.name + '-choice' : this[VarImageChooser + 'op' + i].id = this.name + '-choice' + i;
+			//Add checkbox to div
+			ElemDiv.appendChild(this[VarImageChooser + 'op' + i]);
+
+			//Individual labels for checkboxes
+			let Sublabel = document.createElement('label');
+			Sublabel.className = 'compElem compElem-basic-choice-label';
+			Sublabel.textContent = this.choices[i];
+
+			//Add checkbox to div
+			ElemDiv.appendChild(Sublabel);
+		}
+
+
+		return ElemDiv;
+	}
+
+	getdata() {
+		var data = {};
+		const mainDiv = document.getElementById(this.name);
+		const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
+		var answer = [];
+		for (var i = 0; i < this.choices.length; i++) {
+			if (mainDiv.getElementsByTagName('input')[i].checked)
+				answer.push(mainDiv.getElementsByTagName('label')[i + 1].textContent);
+		}
+		var ElemName = YourQue;
+		data[ElemName] = answer;
+		console.log(data);
+		return data;
+	}
+
+	//Class ImageChooser ends	  
+}
+
+
 class getDataButton {
 	constructor(InputJSON) {
 		this.CompForm = InputJSON.CompForm;
