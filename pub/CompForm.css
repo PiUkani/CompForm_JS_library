@@ -102,7 +102,7 @@
   padding: 5px;
   margin: 5px;
   display: inline-block;
-  /* position: relative; */
+
 
   cursor: pointer;
 }
@@ -110,16 +110,20 @@
 .compElem-basic-image-label:hover {
   display: inline-block;
   border: 1.5px solid #0f7ef1;
-  /* position: relative; */
+
   cursor: pointer;
 }
 
 .compElem-basic-image-label::before {
   border: solid black 2px;
-  background-color: grey;
+
 }
 
 :checked+.compElem-basic-image-label .compElem-basic-img-choice {
   transform: scale(0.95);
   box-shadow: 0 0 10px #0f7ef1;
+}
+
+:checked+.compElem-basic-image-label {
+  border: none;
 }

@@ -64,6 +64,7 @@ newQuiz.createCompPage('Demo_1');
 function CompleteQuiz(inputJSON) {
     var DisplayData = document.getElementById("output");
     const output_JSON_container = document.createElement('pre');
+    output_JSON_container.id = 'pre_out';
     output_JSON_container.appendChild(document.createElement('code'));
     const JsonOut = document.createTextNode(JSON.stringify(inputJSON, null, 1));
     output_JSON_container.appendChild(JsonOut);
