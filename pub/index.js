@@ -24,6 +24,8 @@ newQuiz.elemDropDown({
     choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4']
 });
 
+
+
 newQuiz.elemImageChooser({
     name: 'img_choice_1',
     YourQue: 'Choose the image that best describes your mood',
@@ -57,37 +59,36 @@ var MixedInputJSON = {
 };
 
 
-var RubricTable = {
-    questions: [{
-        name: 'Evaluate your joy',
-        YourQue: 'Select appropriate response for each row',
-        cols: ['col1', 'col2', 'col3', 'col4'],
-        row: [{
-                id: 'row1',
-                value: 'row_one'
-            },
-            {
-                id: 'row2',
-                value: 'row_two'
-            },
-            {
-                id: 'row3',
-                value: 'row_three'
-            },
-            {
-                id: 'row4',
-                value: 'row_four'
-            }
-        ],
-        cells: {
-            'row1': ['cell11', 'cell12', 'cell13', 'cell14'],
-            'row2': ['cell11', 'cell12', 'cell13', 'cell14'],
-            'row3': ['cell11', 'cell12', 'cell13', 'cell14'],
-            'row4': ['cell11', 'cell12', 'cell13', 'cell14'],
+var Rubric = {
+    name: 'Evaluate your joy',
+    YourQue: 'Select appropriate response for each row',
+    cols: ['col1', 'col2', 'col3', 'col4'],
+    rows: [{
+            id: 'row1',
+            value: 'row_one'
+        },
+        {
+            id: 'row2',
+            value: 'row_two'
+        },
+        {
+            id: 'row3',
+            value: 'row_three'
+        },
+        {
+            id: 'row4',
+            value: 'row_four'
         }
-    }]
+    ],
+    cells: {
+        'row1': ['cell11', 'cell12', 'cell13', 'cell14'],
+        'row2': ['cell11', 'cell12', 'cell13', 'cell14'],
+        'row3': ['cell11', 'cell12', 'cell13', 'cell14'],
+        'row4': ['cell11', 'cell12', 'cell13', 'cell14'],
+    }
 };
 newQuiz.elemMixedInput(MixedInputJSON);
+newQuiz.elemRubricTable(Rubric);
 // newQuiz.elemgetDataButton({ text: 'Finish', CompForm: newQuiz })
 newQuiz.createCompPage('Demo_1');
 

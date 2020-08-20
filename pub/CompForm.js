@@ -59,7 +59,7 @@ class CompPage {
 	elemMixedInput(InputJSON) {
 		// this.ArgValidation(name, YourQue);
 		const newMixedInput = new MixedInput(InputJSON);
-		newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
+		newMixedInput.YourQue = this.CompElements.length + 1 + '.' + InputJSON.YourQue;
 		this.CompElements.push(newMixedInput);
 	}
 
@@ -70,12 +70,21 @@ class CompPage {
 		this.CompElements.push(newImageChooser);
 	}
 
+
+	elemRubricTable(InputJSON) {
+		this.ArgValidation(InputJSON.name, InputJSON.YourQue);
+		const newRubricTable = new RubricTable(InputJSON);
+		newRubricTable.YourQue = this.CompElements.length + 1 + '.' + InputJSON.YourQue;
+		this.CompElements.push(newRubricTable);
+	}
+
 	elemgetDataButton(InputJSON) {
 		// this.ArgValidation(name, YourQue);
 		const newgetDataButton = new getDataButton(InputJSON);
 		//  newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
 		this.CompElements.push(newgetDataButton);
 	}
+
 
 	createCompPage(id) {
 		this.id = id;
@@ -365,6 +374,7 @@ class DropDown {
 class MixedInput {
 	constructor(InputJSON) {
 		this.Input = (InputJSON);
+		this.YourQue = InputJSON.YourQue;
 		this.MixedElements = [];
 	}
 
@@ -379,7 +389,7 @@ class MixedInput {
 		//Question(label)
 		let Mainlabel = document.createElement('label');
 		Mainlabel.className = 'compElem compElem-basic-label';
-		Mainlabel.textContent = this.Input.YourQue;
+		Mainlabel.textContent = this.YourQue;
 
 		ElemDiv.appendChild(Mainlabel);
 
@@ -419,25 +429,16 @@ class MixedInput {
 	//Class MixedInput ends
 }
 
-class RubricTable {
-	constructor(InputJSON) {
-		this.Input = (InputJSON);
-	}
-
-
-
-}
 
 class ImageChooser {
 	constructor(InputJSON) {
-		this.subtype = InputJSON.subtype;
 		this.name = InputJSON.name;
 		this.YourQue = InputJSON.YourQue;
 		this.choices = InputJSON.choices;
 	}
 
 	returnElem() {
-		//create Div to contain question(label) and Multiple_choice
+		//create Div to contain question(label) and 
 		const ElemDiv = document.createElement('div');
 		ElemDiv.className = 'compElem compElem-basic-div';
 		ElemDiv.id = this.name;
@@ -494,6 +495,105 @@ class ImageChooser {
 	}
 
 	//Class ImageChooser ends	  
+}
+
+class RubricTable {
+	constructor(InputJSON) {
+		this.name = InputJSON.name;
+		this.YourQue = InputJSON.YourQue;
+		this.Input = (InputJSON);
+		this.cols = InputJSON.cols;
+		this.rows = InputJSON.rows;
+		this.cells = InputJSON.cells;
+	}
+
+	returnElem() {
+		//create Div to contain question(label) and YourQue
+		const ElemDiv = document.createElement('div');
+		ElemDiv.className = 'compElem compElem-basic-div';
+		ElemDiv.id = this.name;
+		//Question(label)
+		let Mainlabel = document.createElement('label');
+		Mainlabel.className = 'compElem compElem-basic-label';
+		Mainlabel.textContent = this.YourQue;
+
+		ElemDiv.appendChild(Mainlabel);
+
+		var VarRubricTable = 'newRubricTable';
+
+		this[VarRubricTable] = document.createElement('table');
+
+		this[VarRubricTable].className = 'compElem compElem-rubric-table';
+		this[VarRubricTable].id = 'compElem compElem-rubric-table';
+		this[VarRubricTable + '-cols'] = document.createElement('tr');
+
+		//Add column title cells
+		for (var i = 0; i < this.cols.length + 1; i++) {
+
+			this[VarRubricTable + 'col' + i] = document.createElement('th');
+			this[VarRubricTable + 'col' + i].className = 'compElem compElem-table-col-title';
+			this[VarRubricTable + 'col' + i].id = this.name + '-table_col_title' + i;
+
+			(i == 0) ? this[VarRubricTable + 'col' + i].innerHTML = '': this[VarRubricTable + 'col' + i].innerHTML = this.cols[i - 1];
+			//Add column cell to table
+			this[VarRubricTable + '-cols'].appendChild(this[VarRubricTable + 'col' + i]);
+		}
+
+		this[VarRubricTable].appendChild(this[VarRubricTable + '-cols']);
+
+
+		//Add row title cells
+		for (var i = 0; i < this.rows.length; i++) {
+			this[VarRubricTable + '-rows' + i] = document.createElement('tr');
+
+			this[VarRubricTable + '-row_title' + i] = document.createElement('td');
+
+			this[VarRubricTable + '-row_title' + i].innerHTML = this.rows[i].value;
+
+			this[VarRubricTable + '-row_title' + i].className = 'compElem compElem-table-row-title';
+
+			this[VarRubricTable + '-rows' + i].id = this.name + '-table_row_title' + i;
+
+			//Add row_title td to tr
+			this[VarRubricTable + '-rows' + i].appendChild(this[VarRubricTable + '-row_title' + i]);
+
+			for (var j = 0; j < this.rows.length; j++) {
+				this[VarRubricTable + '-row-cell' + j] = document.createElement('td');
+
+				this[VarRubricTable + '-row-cell' + j].innerHTML = this.cells[this.rows[i].id][j];
+
+				this[VarRubricTable + '-row-cell' + j].className = 'compElem compElem-table-row-cell';
+
+				this[VarRubricTable + '-row-cell' + j].id = this.name + '-table_row_cell' + j;
+
+				this[VarRubricTable + '-rows' + i].appendChild(this[VarRubricTable + '-row-cell' + j]);
+
+			}
+			this[VarRubricTable].appendChild(this[VarRubricTable + '-rows' + i]);
+		}
+
+		ElemDiv.appendChild(this[VarRubricTable]);
+		return ElemDiv;
+	}
+
+	getdata() {
+		// var data = {};
+		// const mainDiv = document.getElementById(this.name);
+		// const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
+		// var answer = [];
+		// for (var i = 0; i < this.choices.length; i++) {
+		// 	if (mainDiv.getElementsByTagName('input')[i].checked)
+		// 		answer.push(mainDiv.getElementsByTagName('img')[i].src);
+		// }
+		// var ElemName = YourQue;
+		// data[ElemName] = answer;
+		// //console.log(data);
+		return 'tabledata';
+	}
+
+	//Class RubricTable ends	  
+
+
 }
 
 

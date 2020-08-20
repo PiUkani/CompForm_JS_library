@@ -110,7 +110,6 @@
 .compElem-basic-image-label:hover {
   display: inline-block;
   border: 1.5px solid #0f7ef1;
-
   cursor: pointer;
 }
 
@@ -126,4 +125,28 @@
 
 :checked+.compElem-basic-image-label {
   border: none;
+}
+
+.compElem compElem-rubric-table {
+  padding: 5px;
+  margin: 5px;
+
+}
+
+.compElem-table-col-title,
+.compElem-table-row-title {
+  background-color: aliceblue;
+  padding: 5px;
+  margin: 5px;
+}
+
+.compElem-table-row-cell {
+  background-color: rgb(114, 188, 253);
+  padding: 5px;
+  margin: 5px;
+}
+
+.compElem-table-row-cell:hover {
+  background-color: rgb(51, 156, 248);
+  cursor: pointer;
 }
