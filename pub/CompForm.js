@@ -194,14 +194,15 @@ class MultChoice {
 			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].type = 'radio' : this[VarMultChoice + 'op' + i].type = 'checkbox';
 			this[VarMultChoice + 'op' + i].className = 'compElem compElem-basic-checkbox';
 			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].name = this.name + '-choice' : this[VarMultChoice + 'op' + i].name = this.name + '-choice' + i;
+			(this.subtype === 'radio') ? this[VarMultChoice + 'op' + i].id = this.name + '-choice' + i : this[VarMultChoice + 'op' + i].id = this.name + '-choice' + i;
 			//Add checkbox to div
 			ElemDiv.appendChild(this[VarMultChoice + 'op' + i]);
 
 			//Individual labels for checkboxes
 			let Sublabel = document.createElement('label');
 			Sublabel.className = 'compElem compElem-basic-choice-label';
-			Sublabel.textContent = this.choices[i];
-			(this.subtype === 'radio') ? Sublabel.htmlFor = this.name + '-choice' : Sublabel.htmlFor = this.name + '-choice' + i;
+			Sublabel.innerHTML = this.choices[i];
+			Sublabel.htmlFor = this.name + '-choice' + i;
 			//Add checkbox to div
 			ElemDiv.appendChild(Sublabel);
 		}
