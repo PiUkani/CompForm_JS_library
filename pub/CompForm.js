@@ -639,24 +639,3 @@ class RubricTable {
 
 
 }
-
-
-class getDataButton {
-	constructor(InputJSON) {
-		this.CompForm.id = InputJSON.CompForm;
-		this.text = InputJSON.text;
-	}
-
-	returnElem() {
-		const newButton = document.createElement('BUTTON');
-		newButton.className = 'compElem compElem-basic-button';
-		newButton.type = 'button';
-		const buttonContainer = document.createElement('div');
-		buttonContainer.className = 'compElem compElem-basic-div';
-		newButton.value = this.text;
-		buttonContainer.appendChild(newButton);
-		newButton.onclick = this.CompForm.getdata;
-
-		return buttonContainer;
-	}
-}
