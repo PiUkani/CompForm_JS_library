@@ -86,6 +86,7 @@ head {
 .main-menu a.main {
   background-color: #f39c12;
   color: white;
+  cursor: pointer;
 }
 
 .get-data-button {

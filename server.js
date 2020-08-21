@@ -26,8 +26,20 @@ app.listen(port, () => {
 // We've bound that port to localhost to go to our express server.
 // Must restart web server when you make changes to route handlers.
 
-app.get('/', function (req, res) {
-   res.send(browserRefresh('pub/index.html'));
+// app.get('/', function (req, res) {
+//    res.send(browserRefresh('pub/index.html'));
+// });
+
+// app.get("/demo", function (request, res) {
+//    res.send(browserRefresh('./pub/demo.html'));
+// });
+
+app.get('/', function (request, response) {
+   response.sendFile(__dirname + './pub/index.html');
+});
+
+app.get("/demo", function (request, response) {
+   response.sendFile(__dirname + '/pub/demo.html');
 });
 
 function browserRefresh(filePath) {

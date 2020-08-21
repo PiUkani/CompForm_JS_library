@@ -49,7 +49,7 @@ var MixedInputJSON = {
             name: 'check_2',
             // YourQue: 'select whichever applies',
             YourQue: 'select whichever applies',
-            choices: ['5', 'Option_2', 'Option_3', 'Option_4'],
+            choices: ['Option_5', 'Option_2', 'Option_3', 'Option_4'],
         },
         {
             subtype: 'radio',
@@ -96,12 +96,12 @@ newQuiz.elemRubricTable(Rubric);
 newQuiz.createCompPage('Demo_1');
 
 
-function CompleteQuiz(inputJSON) {
+function CompleteQuiz(GetDataFunc) {
     var DisplayData = document.getElementById('output');
     const output_JSON_container = document.createElement('pre');
     output_JSON_container.id = 'pre_out';
     output_JSON_container.appendChild(document.createElement('code'));
-    const JsonOut = document.createTextNode(JSON.stringify(inputJSON, null, 1));
+    const JsonOut = document.createTextNode(JSON.stringify(GetDataFunc, null, 1));
     output_JSON_container.appendChild(JsonOut);
     output_JSON_container.name = this.name;
     output_JSON_container.className = 'output-JSON';
@@ -109,6 +109,18 @@ function CompleteQuiz(inputJSON) {
 }
 
 
+function addFunctoButton(button, handler) {
+    if (button.addEventListener) {
+        button.addEventListener('click', handler, false);
+    } else if (button.attachEvent) {
+        button.attachEvent('on' + 'click', handler);
+    } else {
+        button['on' + 'click'] = handler;
+    }
+}
+addFunctoButton(document.getElementById('GetdataButton'), function () {
+    CompleteQuiz(newQuiz.getdata())
+});
 // const handlePageComplete = event => {
 //     event.preventDefault();
 //     console.log(newQuiz.CompElements)

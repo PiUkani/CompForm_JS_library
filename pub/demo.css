@@ -6,6 +6,49 @@
     padding: 10px;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+}
+
+
+.sub-menu {
+    overflow: hidden;
+    background-color: #000000;
+}
+
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+.sticky+.content {
+    padding-top: 60px;
+}
+
+.sub-menu a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.sub-menu a:hover {
+    background-color: #0f7ef1;
+    color: black;
+}
+
+.sub-menu a.main {
+    background-color: #f39c12;
+    color: white;
+}
+
+.demodiv {
+    margin: 10px;
 }
 
 .feature_demo {
