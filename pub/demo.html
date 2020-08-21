@@ -27,9 +27,7 @@
 
     </div>
 
-    </br>
 
-    </br>
     <div class="demo">
 
         <h3> Text input:</h3>
@@ -65,6 +63,96 @@
                     <td>
                         <div class='output_demo' id='demo_0'><button class='get-data-button'
                                 onclick="demo_0(newQuiz_0.getdata());">Get
+                                Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <h3> Multiple Choice:</h3>
+        <div class="sub_demo_div">
+            <table>
+                <tr>
+                    <td>
+                        <div class="rendered_demo">
+                            <div id='MultChoice-Demo'>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='ind_demo_code'>
+                            <code class='code_text'>
+                                const newQuiz_1 = initCompPage('MultChoice-Demo');</br>
+
+                                newQuiz_1.elemMultChoice({
+                                name: 'mul_choice_1',</br>
+                                YourQue: 'Choose reasons for the sparks of joy',</br>
+                                choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4']
+                                });</br>
+                                newQuiz_1.createCompPage('MultChoice-Demo');
+                            </code>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='feature_demo'>
+
+                            Features:
+                            Flexible input Block size: The size of the input block increases as
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class='output_demo' id='demo_1'><button class='get-data-button'
+                                onclick="demo_1(newQuiz_1.getdata());">Get
+                                Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <h3> Single Choice:</h3>
+        <div class="sub_demo_div">
+            <table>
+                <tr>
+                    <td>
+                        <div class="rendered_demo">
+                            <div id='SingleChoice-Demo'>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='ind_demo_code'>
+                            <code class='code_text'>
+                                const newQuiz_2 = initCompPage('SingleChoice-Demo');</br>
+                                newQuiz_2.elemMultChoice({
+                                name: 'rad_choice_1',</br>
+                                YourQue: 'Choose one reason for the sparks of joy',</br>
+                                choices: ['Option_1', 'Option_2', 'Option_3', </br>'Option_4'],
+                                subtype: 'radio'
+                                });
+                                newQuiz_2.createCompPage('SingleChoice-Demo');
+
+                            </code>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='feature_demo'>
+
+                            Features:
+                            Flexible input Block size: The size of the input block increases as
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class='output_demo' id='demo_1'><button class='get-data-button'
+                                onclick="demo_2(newQuiz_2.getdata());">Get
                                 Data</button>
                         </div>
                     </td>

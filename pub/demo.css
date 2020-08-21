@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
+    margin: 10px 0px;
     padding: 10px;
     align-items: center;
     justify-content: center;
@@ -19,7 +20,8 @@
 .rendered_demo {
     flex-grow: 2;
     margin: 0px 10px;
-
+    width: max-content;
+    min-width: -webkit-fill-available;
 }
 
 .ind_demo_code {
