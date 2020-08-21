@@ -105,8 +105,6 @@
   padding: 5px;
   margin: 5px;
   display: inline-block;
-
-
   cursor: pointer;
 }
 
@@ -121,7 +119,13 @@
 
 }
 
-:checked+.compElem-basic-image-label .compElem-basic-img-choice {
+.compElem-basic-img-choice {
+  width: 100px;
+  height: 100px;
+  object-fit: fill;
+}
+
+:checked+.compElem-basic-image-label {
   transform: scale(0.95);
   box-shadow: 0 0 10px #0f7ef1;
 }

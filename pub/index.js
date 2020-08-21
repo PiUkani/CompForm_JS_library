@@ -1,5 +1,8 @@
-const newQuiz = initCompPage('Demo_1');
-newQuiz.elemShortAnswer({
+const newQuiz = initCompPage({
+    id: 'Demo_1',
+    question_num_option: 'num'
+});
+newQuiz.elemTextInput({
     name: 'short_1',
     YourQue: 'Does this spark joy?',
     length: 50

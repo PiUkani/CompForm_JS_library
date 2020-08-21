@@ -62,7 +62,7 @@
                     </td>
                     <td>
                         <div class='output_demo' id='demo_0'><button class='get-data-button'
-                                onclick="demo_0(newQuiz_0.getdata());">Get
+                                onclick="demo(newQuiz_0.getdata(),'demo_0');">Get
                                 Data</button>
                         </div>
                     </td>
@@ -107,7 +107,7 @@
                     </td>
                     <td>
                         <div class='output_demo' id='demo_1'><button class='get-data-button'
-                                onclick="demo_1(newQuiz_1.getdata());">Get
+                                onclick="demo(newQuiz_1.getdata(),'demo_1');">Get
                                 Data</button>
                         </div>
                     </td>
@@ -132,9 +132,9 @@
                                 newQuiz_2.elemMultChoice({
                                 name: 'rad_choice_1',</br>
                                 YourQue: 'Choose one reason for the sparks of joy',</br>
-                                choices: ['Option_1', 'Option_2', 'Option_3', </br>'Option_4'],
+                                choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],</br>
                                 subtype: 'radio'
-                                });
+                                });</br>
                                 newQuiz_2.createCompPage('SingleChoice-Demo');
 
                             </code>
@@ -151,8 +151,8 @@
                         </div>
                     </td>
                     <td>
-                        <div class='output_demo' id='demo_1'><button class='get-data-button'
-                                onclick="demo_2(newQuiz_2.getdata());">Get
+                        <div class='output_demo' id='demo_2'><button class='get-data-button'
+                                onclick="demo(newQuiz_2.getdata(),'demo_2');">Get
                                 Data</button>
                         </div>
                     </td>
@@ -160,6 +160,224 @@
             </table>
         </div>
 
+        <h3> Drop Down:</h3>
+        <div class="sub_demo_div">
+            <table>
+                <tr>
+                    <td>
+                        <div class="rendered_demo">
+                            <div id='DropDown-Demo'>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='ind_demo_code'>
+                            <code class='code_text'>
+
+                                const newQuiz_3 = initCompPage({
+                                id: 'DropDown-Demo',
+                                question_num_option: 'num'
+                                });</br>
+                                newQuiz_3.elemMultChoice({
+                                name: 'rad_choice_1',
+                                YourQue: 'Choose one reason for the sparks of joy',</br>
+                                choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],</br>
+                                subtype: 'radio'
+                                });</br>
+                                newQuiz_3.createCompPage('DropDown-Demo');
+                                ('DropDown-Demo');
+
+                            </code>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='feature_demo'>
+
+                            Features:
+                            Flexible input Block size: The size of the input block increases as
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class='output_demo' id='demo_3'><button class='get-data-button'
+                                onclick="demo(newQuiz_3.getdata(),'demo_3');">Get
+                                Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <h3> Image Chooser:</h3>
+        <div class="sub_demo_div">
+            <table>
+                <tr>
+                    <td>
+                        <div class="rendered_demo">
+                            <div id='ImageChooser-Demo'>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='ind_demo_code'>
+                            <code class='code_text'>
+
+                                const newQuiz_4 = initCompPage({
+                                id: 'ImageChooser-Demo',
+                                question_num_option: 'num'
+                                });</br>
+                                newQuiz.elemImageChooser({
+                                name: 'img_choice_1',
+                                YourQue: 'Choose the image </br>that best describes your mood',
+                                choices: ['./imgs/1.png', './imgs/2.png', './imgs/3.png', './imgs/4.png']
+                                });</br>
+                                newQuiz_4.createCompPage('ImageChooser-Demo');
+
+                            </code>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='feature_demo'>
+
+                            Features:
+                            Flexible input Block size: The size of the input block increases as
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class='output_demo' id='demo_4'><button class='get-data-button'
+                                onclick="demo(newQuiz_4.getdata(),'demo_4');">Get
+                                Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <h3> Rubric Table:</h3>
+        <div class="sub_demo_div">
+            <table>
+                <tr>
+                    <td>
+                        <div class="rendered_demo">
+                            <div id='RubricTable-Demo'>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='ind_demo_code'>
+                            <code class='code_text'>
+
+
+                                const newQuiz_5 = initCompPage({
+                                id: 'RubricTable-Demo',
+                                question_num_option: 'num'
+                                });</br>
+                                var Rubric = {
+                                name: 'Evaluate your joy',
+                                YourQue: 'Select appropriate response for each row',
+                                cols: ['col1', 'col2', 'col3', 'col4'],</br>
+                                rows: [{
+                                id: 'row1',
+                                value: 'row_one'
+                                },
+                                {
+                                id: 'row2',
+                                value: 'row_two'
+                                },
+                                {
+                                id: 'row3',
+                                value: 'row_three'
+                                },
+                                {
+                                id: 'row4',
+                                value: 'row_four'
+                                }
+                                ],</br>
+                                cells: {
+                                'row1': ['cell11', 'cell12', 'cell13', 'cell14'],
+                                'row2': ['cell11', 'cell12', 'cell13', 'cell14'],
+                                'row3': ['cell11', 'cell12', 'cell13', 'cell14'],
+                                'row4': ['cell11', 'cell12', 'cell13', 'cell14'],
+                                }
+                                };</br>
+                                newQuiz.elemRubricTable(Rubric);</br>
+                                newQuiz_5.createCompPage('RubricTable-Demo');
+
+                            </code>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='feature_demo'>
+
+                            Features:
+                            Flexible input Block size: The size of the input block increases as
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class='output_demo' id='demo_5'><button class='get-data-button'
+                                onclick="demo(newQuiz_5.getdata(),'demo_5');">Get
+                                Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h3> Mixed Input:</h3>
+        <div class="sub_demo_div">
+            <table>
+                <tr>
+                    <td>
+                        <div class="rendered_demo">
+                            <div id='MixedInput-Demo'>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='ind_demo_code'>
+                            <code class='code_text'>
+
+                                const newQuiz_4 = initCompPage({
+                                id: 'ImageChooser-Demo',
+                                question_num_option: 'num'
+                                });</br>
+                                newQuiz.elemImageChooser({
+                                name: 'img_choice_1',
+                                YourQue: 'Choose the image </br>that best describes your mood',
+                                choices: ['./imgs/1.png', './imgs/2.png', './imgs/3.png', './imgs/4.png']
+                                });</br>
+                                newQuiz_4.createCompPage('ImageChooser-Demo');
+
+                            </code>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='feature_demo'>
+
+                            Features:
+                            Flexible input Block size: The size of the input block increases as
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class='output_demo' id='demo_6'><button class='get-data-button'
+                                onclick="demo(newQuiz_5.getdata(),'demo_6');">Get
+                                Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <div id="footer"></div>

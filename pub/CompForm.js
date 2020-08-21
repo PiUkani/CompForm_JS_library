@@ -1,85 +1,87 @@
 'use strict';
 
 //Creates CompPage
-function initCompPage(name) {
-	const newCompPage = new CompPage(name);
+function initCompPage(InputJSON) {
+	const newCompPage = new CompPage(InputJSON);
 	return newCompPage;
 }
 
 //Main CompPage Class
 class CompPage {
 	// constructor(comppagename, question_num_option) {
-	constructor(comppagename) {
-		this.comppagename = comppagename;
+	constructor(InputJSON) {
+		this.comppagename = InputJSON.id;
 		this.CompElements = [];
 		this.id = '';
 		this.data;
-		//   this.question_num_option = question_num_option;
+		this.question_num_option = InputJSON.question_num_option;
 	}
 
-	ArgValidation(name, YourQue, length) {
-		if (name === '' || YourQue === '' || length <= 0) {
+	ArgValidation(InputJSON) {
+		if (InputJSON.name === '' || InputJSON.YourQue === '' || InputJSON.length <= 0) {
 			console.log('missing arguments in' + this.comppagename);
 		}
 	}
 	//TODO add various question number options such as numerical, alphabetical, NIL
-	// numberSys(){
-	// 	if(this.question_num_option === 'roman')
+	numberSys(YourQue) {
+		if (this.question_num_option === 'num') {
+			return this.CompElements.length + 1 + '.' + YourQue;
+		}
 
-	// }
-
-	elemShortAnswer(name, YourQue, length) {
-		this.ArgValidation(name, YourQue, length);
-		const newShortAnswer = new TextInput(name, YourQue, length);
-		newShortAnswer.YourQue = this.CompElements.length + 1 + '.' + newShortAnswer.YourQue;
-		this.CompElements.push(newShortAnswer);
 	}
 
-	elemMultChoice(type, name, YourQue, choices) {
-		this.ArgValidation(name, YourQue);
-		const newMultChoice = new MultChoice(type, name, YourQue, choices);
-		newMultChoice.YourQue = this.CompElements.length + 1 + '.' + newMultChoice.YourQue;
+	elemTextInput(InputJSON) {
+		this.ArgValidation(InputJSON);
+		const newTextInput = new TextInput(InputJSON);
+		newTextInput.YourQue = this.numberSys(newTextInput.YourQue);
+		this.CompElements.push(newTextInput);
+	}
+
+	elemMultChoice(InputJSON) {
+		this.ArgValidation(InputJSON);
+		const newMultChoice = new MultChoice(InputJSON);
+		newMultChoice.YourQue = this.numberSys(newMultChoice.YourQue);
 		this.CompElements.push(newMultChoice);
 	}
 
-	elemDropDown(name, YourQue, choices) {
-		this.ArgValidation(name, YourQue);
-		const newDropDown = new DropDown(name, YourQue, choices);
-		newDropDown.YourQue = this.CompElements.length + 1 + '.' + newDropDown.YourQue;
+	elemDropDown(InputJSON) {
+		this.ArgValidation(InputJSON);
+		const newDropDown = new DropDown(InputJSON);
+		newDropDown.YourQue = this.numberSys(newDropDown.YourQue);
 		this.CompElements.push(newDropDown);
 	}
 
-	elemRadioChoice(name, YourQue, choices) {
-		this.ArgValidation(name, YourQue);
-		const newRadioChoice = new RadioChoice(name, YourQue, choices);
-		newRadioChoice.YourQue = this.CompElements.length + 1 + '.' + newRadioChoice.YourQue;
+	elemRadioChoice(InputJSON) {
+		this.ArgValidation(InputJSON);
+		const newRadioChoice = new RadioChoice(InputJSON);
+		newRadioChoice.YourQue = this.numberSys(newRadioChoice.YourQue);
 		this.CompElements.push(newRadioChoice);
 	}
 
 	elemMixedInput(InputJSON) {
-		// this.ArgValidation(name, YourQue);
+		// this.ArgValidation(InputJSON);
 		const newMixedInput = new MixedInput(InputJSON);
-		newMixedInput.YourQue = this.CompElements.length + 1 + '.' + InputJSON.YourQue;
+		newMixedInput.YourQue = this.numberSys(newMixedInput.YourQue);
 		this.CompElements.push(newMixedInput);
 	}
 
-	elemImageChooser(type, name, YourQue, choices) {
-		this.ArgValidation(name, YourQue);
-		const newImageChooser = new ImageChooser(type, name, YourQue, choices);
-		newImageChooser.YourQue = this.CompElements.length + 1 + '.' + newImageChooser.YourQue;
+	elemImageChooser(InputJSON) {
+		this.ArgValidation(InputJSON);
+		const newImageChooser = new ImageChooser(InputJSON);
+		newImageChooser.YourQue = this.numberSys(newImageChooser.YourQue);
 		this.CompElements.push(newImageChooser);
 	}
 
 
 	elemRubricTable(InputJSON) {
-		this.ArgValidation(InputJSON.name, InputJSON.YourQue);
+		this.ArgValidation(InputJSON);
 		const newRubricTable = new RubricTable(InputJSON);
 		newRubricTable.YourQue = this.CompElements.length + 1 + '.' + InputJSON.YourQue;
 		this.CompElements.push(newRubricTable);
 	}
 
 	elemgetDataButton(InputJSON) {
-		// this.ArgValidation(name, YourQue);
+		// this.ArgValidation(InputJSON);
 		const newgetDataButton = new getDataButton(InputJSON);
 		//  newMixedInput.YourQue = this.CompElements.length + 1 + '.' + newMixedInput.YourQue;
 		this.CompElements.push(newgetDataButton);
@@ -132,6 +134,7 @@ class TextInput {
 		this.name = InputJSON.name;
 		this.YourQue = InputJSON.YourQue;
 	}
+
 	static name = 'TextInput'
 	returnElem() {
 		const newTextInput = document.createElement('textarea');
@@ -141,7 +144,8 @@ class TextInput {
 		newTextInput.style.width = this.length * 10 + 'px';
 		newTextInput.className = 'compElem compElem-basic-text';
 		newTextInput.oninput = function () {
-			increase_area(this);
+			this.style.height = "1px";
+			this.style.height = (this.scrollHeight) + "px";
 		};
 		//create label
 		let labelInputArea = document.createElement('label');
@@ -175,10 +179,7 @@ class TextInput {
 	//Class TextInput ends	  
 }
 //Misc for TextInput
-function increase_area(element) {
-	element.style.height = "1px";
-	element.style.height = (element.scrollHeight) + "px";
-}
+
 
 
 
