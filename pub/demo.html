@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>CompForm.js</title>
+    <meta name="description" content="CompForm.js Page">
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="CompForm.css">
+
+</head>
+
+<body>
+
+    <div class="main-menu" id="Mainmenu">
+        <a href="/" class="main">CompForm</a>
+        <a href="/demo.html">Demos</a>
+        <a href="/doc.html">Documentation</a>
+        <a href="/CompForm.js" download="CompForm.js">Download</a>
+    </div>
+    <div class="header">
+        <h1 id="main-title">CompForm- a JS library</h1>
+
+    </div>
+
+    </br>
+
+    </br>
+    <div class="demo">
+
+        <h3> Text input:</h3>
+        <div class="sub_demo_div">
+            <table>
+                <tr>
+                    <td>
+                        <div class="rendered_demo">
+                            <div id='textInput-Demo'>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class='ind_demo_code'>
+                            <code class='code_text'>
+                                const newQuiz_0 = initCompPage('textInput-Demo');</br>
+                                newQuiz_0.elemShortAnswer({ name: 'short_1', YourQue:</br>
+                                'Does this spark joy?', length: 50 });</br>
+                                newQuiz_0.createCompPage('textInput-Demo');
+                            </code>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class='feature_demo'>
+
+                            Features:
+                            Flexible input Block size: The size of the input block increases as
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class='output_demo' id='demo_0'><button class='get-data-button'
+                                onclick="demo_0(newQuiz_0.getdata());">Get
+                                Data</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+    <script type="text/javascript" src="CompForm.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+
+</body>
+
+
+</html>
