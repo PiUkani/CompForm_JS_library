@@ -89,7 +89,10 @@ var Rubric = {
 };
 newQuiz.elemMixedInput(MixedInputJSON);
 newQuiz.elemRubricTable(Rubric);
-// newQuiz.elemgetDataButton({ text: 'Finish', CompForm: newQuiz })
+newQuiz.elemgetDataButton({
+    text: 'Finish',
+    CompForm: newQuiz.id
+})
 newQuiz.createCompPage('Demo_1');
 
 

@@ -276,7 +276,7 @@ class RadioChoice {
 			this[VarRadioChoice + 'op' + i] = document.createElement('input');
 			this[VarRadioChoice + 'op' + i].type = 'radio';
 			this[VarRadioChoice + 'op' + i].className = 'compElem compElem-basic-radio';
-			this[VarRadioChoice + 'op' + i].name = 'this.name-choice';
+			this[VarRadioChoice + 'op' + i].name = this.name + '-choice';
 			this[VarRadioChoice + 'op' + i].id = this.name + '-choice' + i;
 			//Add radio to div
 			ElemDiv.appendChild(this[VarRadioChoice + 'op' + i]);
@@ -306,8 +306,9 @@ class RadioChoice {
 		data[ElemName] = answer;
 		//console.log(data);
 		return data;
-		//Class RadioChoice ends	  
+
 	}
+	//Class RadioChoice ends
 }
 
 class DropDown {
@@ -413,7 +414,7 @@ class MixedInput {
 
 		var VariousInputs = [];
 		var Mixeddata = {
-			'VariousInputs': VariousInputs
+			[this.YourQue]: VariousInputs
 		};
 		for (var i = 0; i < this.MixedElements.length; i++) {
 
@@ -557,7 +558,32 @@ class RubricTable {
 			//Add row_title td to tr
 			this[VarRubricTable + '-rows' + i].appendChild(this[VarRubricTable + '-row_title' + i]);
 
+
+
+
+			//Add cells to table
 			for (var j = 0; j < this.rows.length; j++) {
+				this[VarRubricTable + 'main-row-cell' + j] = document.createElement('td');
+				this[VarRubricTable + 'main-row-cell' + j].className = 'compElem compElem-main-table-row-cell';
+
+				this[VarRubricTable + 'main-row-cell' + j].id = this.name + '-table_main_row_cell' + j;
+
+
+
+				this[VarRubricTable + 'row-radio' + i] = document.createElement('input');
+				this[VarRubricTable + 'row-radio' + i].type = 'radio';
+				this[VarRubricTable + 'row-radio' + i].name = this.name + '-row-radio' + i;
+
+				this[VarRubricTable + 'row-radio' + i].className = 'compElem compElem-basic-table-row-radio';
+				this[VarRubricTable + 'row-radio' + i].id = this.name + '-table-row-radio-' + i + j;
+				//Add checkbox to div
+				this[VarRubricTable + 'main-row-cell' + j].appendChild(this[VarRubricTable + 'row-radio' + i]);
+
+				//Individual labels for checkboxes
+				let Cell_label = document.createElement('label');
+				Cell_label.className = 'compElem compElem-basic-table-cell-label';
+				Cell_label.htmlFor = this.name + '-table-row-radio-' + i + j;
+
 				this[VarRubricTable + '-row-cell' + j] = document.createElement('td');
 
 				this[VarRubricTable + '-row-cell' + j].innerHTML = this.cells[this.rows[i].id][j];
@@ -566,8 +592,14 @@ class RubricTable {
 
 				this[VarRubricTable + '-row-cell' + j].id = this.name + '-table_row_cell' + j;
 
-				this[VarRubricTable + '-rows' + i].appendChild(this[VarRubricTable + '-row-cell' + j]);
+				// this[VarRubricTable + '-rows' + i].appendChild(this[VarRubricTable + '-row-cell' + j]);
 
+
+				//Add label to tr
+				Cell_label.appendChild(this[VarRubricTable + '-row-cell' + j]);
+				this[VarRubricTable + 'main-row-cell' + j].appendChild(Cell_label);
+
+				this[VarRubricTable + '-rows' + i].appendChild(this[VarRubricTable + 'main-row-cell' + j]);
 			}
 			this[VarRubricTable].appendChild(this[VarRubricTable + '-rows' + i]);
 		}
@@ -577,20 +609,32 @@ class RubricTable {
 	}
 
 	getdata() {
-		// var data = {};
-		// const mainDiv = document.getElementById(this.name);
-		// const YourQue = mainDiv.getElementsByTagName('label')[0].textContent; //or this.YourQueue
-		// var answer = [];
-		// for (var i = 0; i < this.choices.length; i++) {
-		// 	if (mainDiv.getElementsByTagName('input')[i].checked)
-		// 		answer.push(mainDiv.getElementsByTagName('img')[i].src);
-		// }
-		// var ElemName = YourQue;
-		// data[ElemName] = answer;
-		// //console.log(data);
-		return 'tabledata';
-	}
 
+
+		var RowInputs = [];
+
+		// var answer = [];
+		for (var i = 0; i < this.cols.length; i++) {
+			var ElemName = this.rows[i].value;
+			console.log(ElemName);
+			const mainDiv = document.getElementById(this.name + '-table_row_title' + i);
+
+			for (var j = 0; j < this.rows.length; j++) {
+				if (mainDiv.getElementsByTagName('input')[j].checked)
+					console.log(mainDiv.getElementsByTagName('input')[j]);
+				RowInputs[ElemName] = document.getElementById(this.name + '-table_row_cell' + j).innerHTML;
+
+			}
+
+		}
+
+
+		var Rubricdata = {
+			[this.YourQue]: RowInputs
+		};
+		return Rubricdata;
+
+	}
 	//Class RubricTable ends	  
 
 
@@ -599,7 +643,7 @@ class RubricTable {
 
 class getDataButton {
 	constructor(InputJSON) {
-		this.CompForm = InputJSON.CompForm;
+		this.CompForm.id = InputJSON.CompForm;
 		this.text = InputJSON.text;
 	}
 

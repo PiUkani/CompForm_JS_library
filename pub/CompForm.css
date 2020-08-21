@@ -93,6 +93,8 @@
   outline: none;
 }
 
+
+/* ImageChooser CSS */
 .compElem-basic-img-checkbox {
   display: none;
 }
@@ -127,6 +129,7 @@
   border: none;
 }
 
+/* RubricTable CSS */
 .compElem compElem-rubric-table {
   padding: 5px;
   margin: 5px;
@@ -140,6 +143,11 @@
   margin: 5px;
 }
 
+.compElem-main-table-row-cell {
+  /* padding: 5px; */
+  margin: 5px;
+}
+
 .compElem-table-row-cell {
   background-color: rgb(114, 188, 253);
   padding: 5px;
@@ -149,4 +157,19 @@
 .compElem-table-row-cell:hover {
   background-color: rgb(51, 156, 248);
   cursor: pointer;
+}
+
+
+.compElem-basic-table-row-radio {
+  display: none;
+}
+
+:checked+.compElem-basic-table-cell-label .compElem-table-row-cell {
+  transform: scale(0.95);
+  background-color: rgb(97, 248, 248);
+  box-shadow: 0 0 10px rgb(97, 248, 248);
+}
+
+:checked+.compElem-basic-table-cell-label {
+  border: none;
 }
