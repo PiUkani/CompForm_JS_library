@@ -28,8 +28,19 @@
   <div class="sub-header">
     <h2>CompForm.js library can help you create various elements used in Tests, quizzes, surveys,and complex forms
       using minimal code.
-      <p>Here are some Demoes</p>
     </h2>
+    </br></br>
+  </div>
+  <div class="sub-header">
+    <h3>
+      <p>> Below is a Full Demo including all the elements provided by the library at the moment</p>
+      <p>> the library provides JSON object as an output which can be sent over to Verifier Server to compare with
+        Answers.</p>
+      <p> Try out the Demo!:
+        1. Fill out the Quiz given below
+        2. Click on the Get Data button to see your answers.
+      </p>
+    </h3>
   </div>
   </br>
 
@@ -40,61 +51,13 @@
     <div class="comp_quiz-example">
       <div id='Demo_1'>
       </div>
+      <div id='output'><button id='GetdataButton' class='get-data-button'>Get Data</button></div>
+      <div id="footer"></div>
 
-      <div class='demo_code'>
-        <pre>
-        const newQuiz = initCompPage('Demo_1');
-        newQuiz.elemShortAnswer({ name: 'short_1', YourQue:
-         'Does this spark joy?', length: 50 });
-
-        newQuiz.elemMultChoice({ name: 'mul_choice_1', YourQue: 'Choose reasons 
-        for the sparks of joy',
-         choices:
-        ['Option_1', 'Option_2', 'Option_3', 'Option_4'] });
-
-        newQuiz.elemMultChoice({ name: 'rad_choice_1', YourQue: 'Choose one reason for 
-        the sparks of joy',
-         choices:
-        ['Option_1', 'Option_2', 'Option_3', 'Option_4'], subtype: 'radio' });
-
-        newQuiz.elemDropDown({ name: 'drop_down_1', YourQue:
-         'Which one sparks the joy', choices: ['Option_1',
-        'Option_2',
-        'Option_3', 'Option_4'] });
-
-        var MixedInputJSON = {
-        name: "classEvaluation",
-        YourQue: "Fill out Below class Eval",
-        VariousInputs: [
-        {
-        type: TextInput,
-        name: 'short_2',
-        YourQue: 'describe your experience',
-        length: 50,
-        },
-        {
-        type: MultChoice,
-        name: 'check_2',
-        // YourQue: 'select whichever applies',
-        YourQue: 'select whichever applies',
-        choices: ['5', 'Option_2', 'Option_3', 'Option_4'],
-        },
-        {
-        subtype: 'radio',
-        type: MultChoice,
-        name: 'radio_2',
-        YourQue: 'select one of the following',
-        choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],
-        }
-        ],
-        };
-      </pre>
-      </div>
     </div>
 
   </div>
-  <div id='output'><button id='GetdataButton' class='get-data-button'>Get Data</button></div>
-  <div id="footer"></div>
+
   <script type="text/javascript" src="CompForm.js"></script>
   <script type="text/javascript" src="index.js"></script>
 

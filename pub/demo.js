@@ -5,7 +5,7 @@ const newQuiz_0 = initCompPage({
 newQuiz_0.elemTextInput({
     name: 'short_1',
     YourQue: 'Does this spark joy?',
-    length: 25
+    length: 40
 });
 newQuiz_0.createCompPage('textInput-Demo');
 
