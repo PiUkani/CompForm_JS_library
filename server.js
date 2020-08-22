@@ -42,6 +42,16 @@ app.get("/demo", function (request, response) {
    response.sendFile(__dirname + '/pub/demo.html');
 });
 
+
+app.get("/doc", function (request, response) {
+   response.sendFile(__dirname + '/pub/doc.html');
+});
+
+
+app.get("/download", function (request, response) {
+   response.sendFile(__dirname + '/pub/CompForm.zip');
+});
+
 function browserRefresh(filePath) {
    var html = fs.readFileSync(filePath);
    var $ = cheerio.load(html);

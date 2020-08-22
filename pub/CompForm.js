@@ -617,7 +617,6 @@ class RubricTable {
 		// var answer = [];
 		for (var i = 0; i < this.cols.length; i++) {
 			var ElemName = this.rows[i].value;
-			console.log(ElemName);
 			const mainDiv = document.getElementById(this.name + '-table_row_title' + i);
 
 			for (var j = 0; j < this.rows.length; j++) {
