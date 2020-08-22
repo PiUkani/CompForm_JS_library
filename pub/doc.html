@@ -28,6 +28,317 @@
     <div class="sub-header_0">
         <h2>Documentation</h2>
     </div>
+    <div class="Main-Doc">
+        <pre>
+        <h3>Getting Started...</h3>
+        <p>To get started,
+            1)Please click on the download button,
+            2) Unzip the downloaded files
+            3) There are 2 files in the unzipped folder
+                i) CompForm.js (A JavaScript file)
+                ii) CompForm.css (A CSS file for the objects created by CompForm.js)
+        
+            4) You can put the files in appropriate folder depending on your file structure.
+    </p>
+        <h3> How to add the library to your HTML page </h3>
+        Use below code to add JS file and CSS file to your designated HTML page for the quiz:
+        You can add the CSS file under header tag using following code:
+        <code><xmp>
+            
+            <head>
+                <link rel="stylesheet" href="CompForm.css">
+            </head>
+            
+        </xmp></code>
+        The JS file must be added before the JS file it will be used in using following code:
+        <code><xmp>
+            
+            <script type="text/javascript" src="CompForm.js"></script>
+        
+        </xmp></code>
+
+
+        After successfully downloading and adding the files to your HTML Quiz page,
+        You can test the library by calling initializing the main object for the quiz.
+        (PS: each new quiz will use one such object)
+        <code><xmp>
+            
+            const newQuiz = initCompPage({
+            id: 'Demo_1',
+            question_num_option: 'num'
+            });
+        
+        </xmp></code>
+        Here you are free to choose your object name(here: newQuiz) and also the id for the div element that’s going to
+        include the quiz(here:Demo_1).
+        In this version the ‘question_num_option’ supports numbers only.
+
+        Save the code and open the HTML file and console on the page to make sure you are not getting ‘initCompPage’
+        undefined error. If so please make sure the js file is added properly to your html page.
+
+
+
+        <h2> The basic code structure: </h2>
+
+        CompForm creates quiz in 4 steps (see step 4 to get the data in JSON):
+        1) (More Details) Initialise main object:
+        Here make sure to choose unique name for the main object(here: newQuiz) and the id of the container element(e.g.
+        &ltdiv&gt) that will include the quiz.
+        <code><xmp>
+            const newQuiz = initCompPage({
+            id: 'Demo_1',
+            question_num_option: 'num'
+            });
+        </xmp></code>
+
+        2) (More Details) Add whatever elements you would like to add:
+        e.g. Here is how you add text input
+        newQuiz.elemTextInput({
+        name: 'short_1',
+        YourQue: 'Does this spark joy?',
+        length: 50
+        });
+        By now you may have noticed that we will use JSON as the input for every function.
+        It makes it easy to read for humans as the quiz gets longer and it also provides other benefits such as using
+        the same format input for all the element generation functions.
+        3) (More Details) Get the quiz inside a div element using div element id:
+        <code><xmp>
+            newQuiz.createCompPage('Demo_1');
+        </xmp></code>
+
+
+        4) Get data in JSON format:
+        <code><xmp>
+            newQuiz.getdata();
+        </xmp></code>
+
+        Parameters:
+        newQuiz: the same name you used to create quiz element in the first step
+        Here getdata() function on newQuiz returns JSON data by combining all the data from newQuiz elements.
+
+        <h2> Deep Dive into Above steps: </h2>
+
+        <h2>1) Initialise main object:</h2>
+        Sample Code:
+        <code><xmp>
+            const newQuiz = initCompPage({
+            id: 'Demo_1',
+            question_num_option: 'num'
+            });
+        </xmp></code>
+
+        newQuiz: this name will be used to attach elements (See All Elements) to the quiz
+        id: The id of the element that will hold the quiz
+
+        <h2>2)Elements:</h2>
+        <h2>Text Input:</h2>
+        Sample Code:
+        <code><xmp>
+            newQuiz.elemTextInput({
+            name: 'short_1',
+            YourQue: 'Does this spark joy?',
+            length: 50
+            });
+
+        </xmp></code>
+
+        Parameters:
+        name: unique name for this element (uniqueness is important in each individual quiz)
+        YourQue: A question(string) for that will be answered using Text Input.
+        length (in number of characters): This length defines length of each text input block.
+        Important things to know:
+        Height of the input block is adjusted automatically.
+
+        <h2>Multiple Choice:</h2>
+        Sample Code:
+        <code><xmp>
+
+            newQuiz.elemMultChoice({
+            name: 'mul_choice_1',
+            YourQue: 'Choose reasons for the sparks of joy',
+            choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4']
+            Subtype: 'checkbox'
+
+            });
+        </xmp></code>
+        Parameters:
+        name: unique name for this element (uniqueness is important in each individual quiz)
+        YourQue: : A question(string) for that will be answered using Multiple options.
+        Choices: What are the options for the answer.(User can select multiple options)
+        Subtype: (optional parameter) (Default: if not provided defaults to 'checkbox' )
+        Options: 'checkbox' for multiple choice
+        'radio' for single choice
+
+
+        <h2> Single Choice:</h2>
+        Sample Code:
+        <code><xmp>
+            newQuiz.elemRadioChoice({
+            name: 'rad_choice_1',
+            YourQue: 'Choose one reason for the sparks of joy',
+            choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],
+            });
+        </xmp></code>
+        Parameters:
+        name: unique name for this element (uniqueness is important in each individual quiz)
+        YourQue: : A question(string) for that will be answered using Single option.
+        Choices: What are the options for the answer. (User can select only one option)
+
+        <h2>Drop Down:</h2>
+        Sample Code:
+        <code><xmp>
+            newQuiz.elemDropDown({
+            name: 'drop_down_1',
+            YourQue: 'Which one sparks the joy',
+            choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4']
+            });
+
+        </xmp></code>
+
+        Parameters:
+        name: unique name for this element (uniqueness is important in each individual quiz)
+        YourQue: : A question(string) for that will be answered using Drop down menu.
+        Choices: What are the options for the answer. (User can select only one option)
+        Subtype: 'radio' for single choice answer
+
+
+        <h2>Complex Elements:</h2>
+        <h2>Image Chooser:</h2>
+        Sample Code:
+        <code><xmp>
+            newQuiz.elemImageChooser({
+            name: 'img_choice_1',
+            YourQue: 'Choose the image that best describes your mood',
+            choices: ['./imgs/1.png', './imgs/2.png', './imgs/3.png', './imgs/4.png']
+            });
+        </xmp></code>
+
+        Parameters:
+        name: unique name for this element (uniqueness is important in each individual quiz)
+        YourQue: : A question(string) for that will be answered by selecting single or multiple images.
+        Choices: Provide image sources (relative url) for the answer.
+
+
+        <h2>Rubric Table:</h2>
+        Sample Code:
+        <code><xmp>
+
+            var Rubric = {
+            name: 'Evaluate your joy',
+            YourQue: 'Select appropriate response for each row',
+            cols: ['col1', 'col2', 'col3', 'col4'],
+            rows: [{
+            id: 'row1',
+            value: 'row_one'
+            },
+            {
+            id: 'row2',
+            value: 'row_two'
+            },
+            {
+            id: 'row3',
+            value: 'row_three'
+            },
+            {
+            id: 'row4',
+            value: 'row_four'
+            }
+            ],
+            cells: {
+            'row1': ['cell11', 'cell12', 'cell13', 'cell14'],
+            'row2': ['cell11', 'cell12', 'cell13', 'cell14'],
+            'row3': ['cell11', 'cell12', 'cell13', 'cell14'],
+            'row4': ['cell11', 'cell12', 'cell13', 'cell14'],
+            }
+            };
+            newQuiz.elemRubricTable(Rubric);
+        </xmp></code>
+
+        <h3 style="color:'red'">Here for ease of Showing the parameters a separate JSON object is created which will be provided as an input to
+        elemRubricTable to generate Rubric table.
+        </h3>
+        Parameters:
+        name: unique name for this element (uniqueness is important in each individual quiz)
+        YourQue: A question(string) for that will be answered by one option in each row.
+        cols: relative info to show in columns of the Rubric
+        rows:
+        id: unique id to provide cells info
+        value: relative info to show in rows of the Rubric
+        cells:
+        Row ids: row ids are used to match relative cells in the row
+        List: each list should provide value for each cell
+
+       <h2>MixedInput:</h2> 
+
+        Sample Code:
+        <code><xmp>
+
+            var MixedInputJSON = {
+            name: 'classEvaluation',
+            YourQue: 'Fill out Below class Eval',
+            VariousInputs: [{
+            type: TextInput,
+            name: 'short_2',
+            YourQue: 'describe your experience',
+            length: 50,
+            },
+            {
+            type: MultChoice,
+            name: 'check_2',
+            YourQue: 'select whichever applies',
+            choices: ['Option_5', 'Option_2', 'Option_3', 'Option_4'],
+            },
+            {
+            subtype: 'radio',
+            type: MultChoice,
+            name: 'radio_2',
+            YourQue: 'select one of the following',
+            choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],
+            }
+            ],
+            };
+
+            newQuiz.elemMixedInput(MixedInputJSON);
+
+        </xmp></code>
+        Parameters:
+        name: unique name for this element (uniqueness is important in each individual quiz)
+        YourQue: A question(string) for that will be answered by inputting values in multiple elements.
+        VariousInputs: Here you can add various elements given above
+        Format: JSON list
+        Type: type in the element you would like without space(i.e. Image Chooser becomes ImageChooser)
+        All the other parameters depend on individual element you would like to add as per example(please refer to above
+        elements to see the required parameters)
+
+
+        <h2>3) return Quiz:Get the Quiz inside a div element using div element id</h2>
+
+        <code><xmp>
+            newQuiz.createCompPage('Demo_1');
+        </xmp></code>
+
+        newQuiz: the same name you used to create quiz element in the first step
+        id: The same id of the element that will hold the quiz
+
+    <h2> 4) Get data in JSON format:</h2>
+        <code><xmp>
+            newQuiz.getdata();
+        </xmp></code>
+
+        Parameters:
+        newQuiz: the same name you used to create quiz element in the first step
+        Here getdata() function on newQuiz returns JSON data by combining all the data from newQuiz elements.
+
+
+
+
+
+
+
+
+
+    </pre>
+    </div>
     </br>
 
     </br>

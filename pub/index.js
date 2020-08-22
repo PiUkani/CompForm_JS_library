@@ -14,11 +14,10 @@ newQuiz.elemMultChoice({
     choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4']
 });
 
-newQuiz.elemMultChoice({
+newQuiz.elemRadioChoice({
     name: 'rad_choice_1',
     YourQue: 'Choose one reason for the sparks of joy',
     choices: ['Option_1', 'Option_2', 'Option_3', 'Option_4'],
-    subtype: 'radio'
 });
 
 newQuiz.elemDropDown({
@@ -47,7 +46,6 @@ var MixedInputJSON = {
         {
             type: MultChoice,
             name: 'check_2',
-            // YourQue: 'select whichever applies',
             YourQue: 'select whichever applies',
             choices: ['Option_5', 'Option_2', 'Option_3', 'Option_4'],
         },
